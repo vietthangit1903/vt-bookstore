@@ -96,6 +96,7 @@
     <script src="./assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script src="./assets/js/hs.core.js"></script>
+    <script src="./assets/js/validator.js"></script>
     <script src="./assets/js/components/hs.unfold.js"></script>
     <script src="./assets/js/components/hs.malihu-scrollbar.js"></script>
     <script src="./assets/js/components/hs.header.js"></script>
@@ -159,6 +160,7 @@
             preloader.style.display = "none";
         })
     </script>
+    @yield('custom_js')
 </body>
 
 </html>

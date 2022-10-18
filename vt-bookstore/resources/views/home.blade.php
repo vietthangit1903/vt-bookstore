@@ -64,7 +64,7 @@
                             </a>
                         </div>
                         <div class="site-branding pr-7">
-                            <a href="{{route('home')}}" class="d-block mb-2">
+                            <a href="{{ route('home') }}" class="d-block mb-2">
                                 <img src="./assets/img/header-logo-2.png" alt="" style="width: 100px;">
                             </a>
                         </div>
@@ -149,7 +149,7 @@
                         <div class="site-navigation mr-auto d-none d-xl-block">
                             <ul class="nav">
                                 <li class="nav-item dropdown">
-                                    <a href="{{route('home')}}"
+                                    <a href="{{ route('home') }}"
                                         class="nav-link link-black-100 mx-3 px-0 py-3 font-size-2 font-weight-medium">
                                         Home
                                     </a>
@@ -192,7 +192,8 @@
                                         aria-labelledby="shopDropdownInvoker">
                                         <li><a href="./v1.html" class="dropdown-item link-black-100">Book List </a>
                                         </li>
-                                        <li><a href="{{route('cart')}}" class="dropdown-item link-black-100">Book cart</a>
+                                        <li><a href="{{ route('cart') }}" class="dropdown-item link-black-100">Book
+                                                cart</a>
                                         </li>
                                         <li><a href="./checkout.html" class="dropdown-item link-black-100">Book
                                                 checkout</a></li>
@@ -3240,7 +3241,8 @@
                                 class="woocommerce-loop-product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
                                 <a href="./single-product-v2.html" tabindex="0">The Ride of a Lifetime: Lessons
                                     Learned from 15
-                                    Years as CEO...</a></h2>
+                                    Years as CEO...</a>
+                            </h2>
                             <div class="font-size-2 mb-1 text-truncate"><a href="../others/authors-single.html"
                                     class="text-gray-700" tabindex="0">Hillary Burton</a></div>
                             <div class="price d-flex align-items-center font-weight-medium font-size-3">
@@ -3261,7 +3263,8 @@
                                 class="woocommerce-loop-product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
                                 <a href="./single-product-v2.html" tabindex="0">The Rural Diaries: Love,
                                     Livestock, and Big Life
-                                    Lessons Down on Mischief Farm</a></h2>
+                                    Lessons Down on Mischief Farm</a>
+                            </h2>
                             <div class="font-size-2 mb-1 text-truncate"><a href="../others/authors-single.html"
                                     class="text-gray-700" tabindex="0">Hillary Burton</a></div>
                             <div class="price d-flex align-items-center font-weight-medium font-size-3">
@@ -3282,7 +3285,8 @@
                                 class="woocommerce-loop-product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
                                 <a href="./single-product-v2.html" tabindex="0">Russians Among Us: Sleeper Cells,
                                     Ghost Stories,
-                                    and the Hunt...</a></h2>
+                                    and the Hunt...</a>
+                            </h2>
                             <div class="font-size-2 mb-1 text-truncate"><a href="../others/authors-single.html"
                                     class="text-gray-700" tabindex="0">Hillary Burton</a></div>
                             <div class="price d-flex align-items-center font-weight-medium font-size-3">
@@ -3303,7 +3307,8 @@
                                 class="woocommerce-loop-product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
                                 <a href="./single-product-v2.html" tabindex="0">The Ride of a Lifetime: Lessons
                                     Learned from 15
-                                    Years as CEO...</a></h2>
+                                    Years as CEO...</a>
+                            </h2>
                             <div class="font-size-2 mb-1 text-truncate"><a href="../others/authors-single.html"
                                     class="text-gray-700" tabindex="0">Hillary Burton</a></div>
                             <div class="price d-flex align-items-center font-weight-medium font-size-3">
@@ -3324,7 +3329,8 @@
                                 class="woocommerce-loop-product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
                                 <a href="./single-product-v2.html" tabindex="0">The Rural Diaries: Love,
                                     Livestock, and Big Life
-                                    Lessons Down on Mischief Farm</a></h2>
+                                    Lessons Down on Mischief Farm</a>
+                            </h2>
                             <div class="font-size-2 mb-1 text-truncate"><a href="../others/authors-single.html"
                                     class="text-gray-700" tabindex="0">Hillary Burton</a></div>
                             <div class="price d-flex align-items-center font-weight-medium font-size-3">
@@ -3685,6 +3691,7 @@
     <script src="./assets/vendor/slick-carousel/slick/slick.min.js"></script>
 
     <script src="./assets/js/hs.core.js"></script>
+    <script src="./assets/js/validator.js"></script>
     <script src="./assets/js/components/hs.unfold.js"></script>
     <script src="./assets/js/components/hs.malihu-scrollbar.js"></script>
     <script src="./assets/js/components/hs.slick-carousel.js"></script>
@@ -3744,6 +3751,37 @@
             preloader.style.display = "none";
         })
     </script>
+    <script>
+        Validator({
+            form: '#login',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#signinEmail', 'Please enter your email address'),
+                Validator.isEmail('#signinEmail'),
+
+                Validator.isRequired('#signinPassword', 'Please enter your password'),
+            ]
+        });
+        Validator({
+            form: '#signup',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#signupFullname', 'Please enter your full name'),
+
+                Validator.isRequired('#signupEmail', 'Please enter your email address'),
+                Validator.isEmail('#signupEmail'),
+
+                Validator.isRequired('#signupPassword', 'Please enter your password'),
+                Validator.isPassword('#signupPassword'),
+
+                Validator.isRequired('#signupConfirmPassword', 'Please enter your password confirmation'),
+                Validator.isConfirmed('#signupConfirmPassword', function() {
+                    return document.querySelector('#signup #signupPassword').value;
+                }, 'Password confirmation is not match')
+            ]
+        });
+    </script>
+    @yield('custom_js')
 </body>
 
 </html>
