@@ -24,7 +24,7 @@
 
               <div class="px-4 py-5 px-md-6 border-bottom">
                 <div class="media">
-                  <a href="#" class="d-block"><img src="./assets/img/120x180/img6.jpg" class="img-fluid"
+                  <a href="#" class="d-block"><img src="{{ url('') }}/assets/img/120x180/img6.jpg" class="img-fluid"
                       alt="image-description"></a>
                   <div class="media-body ml-4d875">
                     <div class="text-primary text-uppercase font-size-1 mb-1 text-truncate"><a href="#">Hard Cover</a>
@@ -45,7 +45,7 @@
               </div>
               <div class="px-4 py-5 px-md-6 border-bottom">
                 <div class="media">
-                  <a href="#" class="d-block"><img src="./assets/img/120x180/img6.jpg" class="img-fluid"
+                  <a href="#" class="d-block"><img src="{{ url('') }}/assets/img/120x180/img6.jpg" class="img-fluid"
                       alt="image-description"></a>
                   <div class="media-body ml-4d875">
                     <div class="text-primary text-uppercase font-size-1 mb-1 text-truncate"><a href="#">Hard Cover</a>
@@ -67,7 +67,7 @@
               </div>
               <div class="px-4 py-5 px-md-6 border-bottom">
                 <div class="media">
-                  <a href="#" class="d-block"><img src="./assets/img/120x180/img6.jpg" class="img-fluid"
+                  <a href="#" class="d-block"><img src="{{ url('') }}/assets/img/120x180/img6.jpg" class="img-fluid"
                       alt="image-description"></a>
                   <div class="media-body ml-4d875">
                     <div class="text-primary text-uppercase font-size-1 mb-1 text-truncate"><a href="#">Paperback</a>

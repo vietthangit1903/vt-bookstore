@@ -30,11 +30,16 @@
                                         <div class="js-form-message js-focus-state">
                                             <label id="signinEmailLabel" class="form-label" for="signinEmail">Email
                                                 address <span class="text-red-1">*</span></label>
-                                            <input type="email" class="form-control rounded-0 height-4 px-4"
+                                            <input type="email"
+                                                class="form-control rounded-0 height-4 px-4 @error('email') is-invalid @enderror"
                                                 name="email" id="signinEmail" placeholder="vtbookstore@gmail.com"
                                                 aria-label="vtbookstore@gmail.com" aria-describedby="signinEmailLabel"
-                                                required>
-                                            <div class="form-message"></div>
+                                                value="{{ old('email') }}" required>
+                                            <div class="form-message @error('email') invalid-feedback @enderror">
+                                                @error('email')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
@@ -43,10 +48,16 @@
                                         <div class="js-form-message js-focus-state">
                                             <label id="signinPasswordLabel" class="form-label"
                                                 for="signinPassword">Password <span class="text-red-1">*</span></label>
-                                            <input type="password" class="form-control rounded-0 height-4 px-4"
+                                            <input type="password"
+                                                class="form-control rounded-0 height-4 px-4 @error('password') is-invalid @enderror"
                                                 name="password" id="signinPassword" placeholder="" aria-label=""
-                                                aria-describedby="signinPasswordLabel" required>
-                                            <div class="form-message"></div>
+                                                aria-describedby="signinPasswordLabel" value="{{ old('password') }}"
+                                                required>
+                                            <div class="form-message @error('password') invalid-feedback @enderror">
+                                                @error('password')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
 
                                         </div>
                                     </div>
@@ -56,9 +67,9 @@
                                         <div class="js-form-message">
                                             <div
                                                 class="custom-control custom-checkbox d-flex align-items-center text-muted">
-                                                <input type="checkbox" class="custom-control-input" id="termsCheckbox"
-                                                    name="termsCheckbox">
-                                                <label class="custom-control-label" for="termsCheckbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="rememberCheckbox" name="rememberMe">
+                                                <label class="custom-control-label" for="rememberCheckbox">
                                                     <span class="font-size-2 text-secondary-gray-700">
                                                         Remember me
                                                     </span>
@@ -83,8 +94,8 @@
                                 </div>
                             </form>
 
-                            <form action="#" id="signup" style="display: none; opacity: 0;"
-                                data-target-group="idForm" novalidate>
+                            <form action="{{ route('guest.register') }}" id="signup"
+                                style="display: none; opacity: 0;" data-target-group="idForm" novalidate method="POST">
 
                                 <header class="border-bottom px-4 px-md-6 py-4">
                                     <h2 class="font-size-3 mb-0 d-flex align-items-center">
@@ -93,59 +104,76 @@
                                 </header>
 
                                 <div class="p-4 p-md-6">
-
+                                    @csrf
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signupFullnameLabel" class="form-label"
-                                                for="signupFullname">Full Name <span class="text-red-1">*</span></label>
-                                            <input type="text" class="form-control rounded-0 height-4 px-4"
-                                                name="fullname" id="signupFullname"
-                                                aria-describedby="signupFullnameLabel" required>
-                                            <div class="form-message"></div>
+                                            <label id="signupFullnameLabel" class="form-label" for="signupFullname">Full
+                                                Name <span class="text-red-1">*</span></label>
+                                            <input type="text"
+                                                class="form-control rounded-0 height-4 px-4 @error('fullName') is-invalid @enderror"
+                                                name="fullName" id="signupFullname"
+                                                aria-describedby="signupFullnameLabel" value="{{ old('fullName') }}"
+                                                required>
+                                            <div class="form-message @error('fullName') invalid-feedback @enderror">
+                                                @error('fullName')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
 
                                         </div>
                                     </div>
-
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
                                             <label id="signupEmailLabel" class="form-label" for="signupEmail">Email
                                                 <span class="text-red-1">*</span></label>
-                                            <input type="email" class="form-control rounded-0 height-4 px-4"
+                                            <input type="email"
+                                                class="form-control rounded-0 height-4 px-4 @error('email') is-invalid @enderror"
                                                 name="email" id="signupEmail" placeholder="vtbookstore@gmail.com"
                                                 aria-label="vtbookstore@gmail.com" aria-describedby="signupEmailLabel"
-                                                required>
-                                            <div class="form-message"></div>
+                                                value="{{ old('email') }}" required>
+                                            <div class="form-message @error('email') invalid-feedback @enderror">
+                                                @error('email')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
 
                                         </div>
                                     </div>
-
-
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
                                             <label id="signupPasswordLabel" class="form-label"
-                                                for="signupPassword">Password <span class="text-red-1">*</span></label>
-                                            <input type="password" class="form-control rounded-0 height-4 px-4"
+                                                for="signupPassword">Password <span
+                                                    class="text-red-1">*</span></label>
+                                            <input type="password"
+                                                class="form-control rounded-0 height-4 px-4 @error('password') is-invalid @enderror"
                                                 name="password" id="signupPassword" placeholder="" aria-label=""
                                                 aria-describedby="signupPasswordLabel" required>
-                                            <div class="form-message"></div>
+                                            <div class="form-message @error('password') invalid-feedback @enderror">
+                                                @error('password')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
 
                                         </div>
                                     </div>
-
-
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
                                             <label id="signupConfirmPasswordLabel" class="form-label"
                                                 for="signupConfirmPassword">Confirm
                                                 Password <span class="text-red-1">*</span></label>
-                                            <input type="password" class="form-control rounded-0 height-4 px-4"
+                                            <input type="password"
+                                                class="form-control rounded-0 height-4 px-4 @error('confirmPassword') is-invalid @enderror"
                                                 name="confirmPassword" id="signupConfirmPassword" placeholder=""
                                                 aria-label="" aria-describedby="signupConfirmPasswordLabel" required>
-                                            <div class="form-message"></div>
+                                            <div
+                                                class="form-message @error('confirmPassword') invalid-feedback @enderror">
+                                                @error('confirmPassword')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
 
                                         </div>
                                     </div>
-
                                     <div class="mb-3">
                                         <button type="submit" class="btn btn-block py-3 rounded-0 btn-dark">Create
                                             Account</button>
@@ -201,12 +229,12 @@
                         <div class="social-login p-md-6 border-top">
                             <div class="mt-3">
                                 <a href="#" class="btn btn-block btn-fb py-3 rounded-0 pr-3"> <img
-                                        src="./assets/img/fb-icon-removebg.png" alt=""> Login with
+                                        src="{{ url('') }}/assets/img/fb-icon-removebg.png" alt=""> Login with
                                     Facebook</a>
                             </div>
                             <div class="mt-3">
                                 <a href="#" class="btn btn-block btn-gg py-3 rounded-0 pr-3"> <img
-                                        src="./assets/img/gg-icon-removebg.png" alt=""> Login with Google</a>
+                                        src="{{ url('') }}/assets/img/gg-icon-removebg.png" alt=""> Login with Google</a>
                             </div>
 
                         </div>

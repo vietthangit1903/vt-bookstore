@@ -8,17 +8,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="./assets/img/header-logo-2.png">
+    <link rel="shortcut icon" href="{{ url('') }}/assets/img/header-logo-2.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./assets/vendor/fontawesome-free-6.2.0-web/css/all.min.css">
-    <link rel="stylesheet" href="./assets/vendor/animate.css/animate.css">
-    <link rel="stylesheet" href="./assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="./assets/vendor/slick-carousel/slick/slick.css" />
-    <link rel="stylesheet" href="./assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="./assets/css/loader.css">
-    <link rel="stylesheet" href="./assets/css/theme.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/fontawesome-free-6.2.0-web/css/all.min.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/animate.css/animate.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet"
+        href="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/css/loader.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/css/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -65,7 +70,8 @@
                         </div>
                         <div class="site-branding pr-7">
                             <a href="{{ route('home') }}" class="d-block mb-2">
-                                <img src="./assets/img/header-logo-2.png" alt="" style="width: 100px;">
+                                <img src="{{ url('') }}/assets/img/header-logo-2.png" alt=""
+                                    style="width: 100px;">
                             </a>
                         </div>
                         <div
@@ -95,25 +101,45 @@
                         </div>
                         <div class="d-flex align-items-center">
 
-                            <a id="sidebarNavToggler" href="javascript:;" role="button" aria-controls="sidebarContent"
-                                aria-haspopup="true" aria-expanded="false" data-unfold-event="click"
-                                data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent"
-                                data-unfold-type="css-animation"
-                                data-unfold-overlay='{
-                                    "className": "u-sidebar-bg-overlay",
-                                    "background": "rgba(0, 0, 0, .7)",
-                                    "animationSpeed": 500
-                                }'
-                                data-unfold-animation-in="fadeInRight" data-unfold-animation-out="fadeOutRight"
-                                data-unfold-duration="500">
-                                <div class="d-flex align-items-center text-white font-size-2 text-lh-sm">
-                                    <i class="fa-regular fa-user font-size-5"></i>
-                                    <div class="ml-2 d-none d-lg-block">
-                                        <span class="text-white font-size-1">Sign In</span>
-                                        <div class="">My Account</div>
+                            <div class="dropdown">
+                                <a href="#" id="userDropdownInvoker" data-toggle="dropdown" aria-expanded="false"
+                                    data-unfold-event="click" data-unfold-target="#userDropdownMenu"
+                                    data-unfold-type="css-animation" data-unfold-duration="200" data-unfold-delay="50"
+                                    data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp"
+                                    data-unfold-animation-out="fadeOut">
+                                    <div class="d-flex align-items-center text-white font-size-2 text-lh-sm">
+                                        <i class="fa-regular fa-user font-size-5"></i>
+                                        <div class="ml-2 d-none d-lg-block">
+                                            @auth
+                                            <span class="text-white font-size-1">Hello</span>
+                                            <div class="">{{Auth()->user()->fullName}}</div>
+                                            @endauth
+                                            @guest
+                                            <span class="text-white font-size-1">Sign In</span>
+                                            <div class="">My Account</div>
+                                            @endguest
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                                <ul id="userDropdownMenu"
+                                    class="dropdown-unfold dropdown-menu dropdown-menu-right font-size-2 rounded-0 border-gray-900"
+                                    aria-labelledby="userDropdownInvoker">
+                                    @auth
+                                        <li><a href="#" class="dropdown-item link-black-100">My account</a></li>
+                                        <li><a href="#" class="dropdown-item link-black-100">Shopping Cart</a></li>
+                                        <li><a href="#" class="dropdown-item link-black-100">Wishlist</a></li>
+                                        <li><a href="{{ route('auth.logout') }}" class="dropdown-item link-black-100">Log out</a></li>
+                                    @endauth
+                                    @guest
+                                        <li><a href="{{ route('auth.login') }}" class="dropdown-item link-black-100">Log
+                                                in</a></li>
+                                        <li><a href="{{ route('guest.register') }}"
+                                                class="dropdown-item link-black-100">Register</a></li>
+                                        <li><a href="#" class="dropdown-item link-black-100">Forgot Password</a>
+                                        </li>
+                                    @endguest
+                                </ul>
+                            </div>
 
 
                             <a id="sidebarNavToggler1" href="javascript:;" role="button"
@@ -230,9 +256,6 @@
         </div>
     </header>
 
-    @include('layout.login')
-
-
     @include('layout.cart')
 
 
@@ -273,8 +296,8 @@
                                             </a>
                                         </div>
                                         <div data-scs-animation-in="fadeInUp" data-scs-animation-delay="600">
-                                            <img src="./assets/img/500x380/img1.png" class="img-fluid"
-                                                alt="image-description">
+                                            <img src="{{ url('') }}/assets/img/500x380/img1.png"
+                                                class="img-fluid" alt="image-description">
                                         </div>
                                     </div>
                                 </div>
@@ -305,8 +328,8 @@
                                             </a>
                                         </div>
                                         <div data-scs-animation-in="fadeInUp" data-scs-animation-delay="600">
-                                            <img src="./assets/img/500x380/img1.png" class="img-fluid"
-                                                alt="image-description">
+                                            <img src="{{ url('') }}/assets/img/500x380/img1.png"
+                                                class="img-fluid" alt="image-description">
                                         </div>
                                     </div>
                                 </div>
@@ -337,8 +360,8 @@
                                             </a>
                                         </div>
                                         <div data-scs-animation-in="fadeInUp" data-scs-animation-delay="600">
-                                            <img src="./assets/img/500x380/img1.png" class="img-fluid"
-                                                alt="image-description">
+                                            <img src="{{ url('') }}/assets/img/500x380/img1.png"
+                                                class="img-fluid" alt="image-description">
                                         </div>
                                     </div>
                                 </div>
@@ -369,8 +392,8 @@
                                             </a>
                                         </div>
                                         <div data-scs-animation-in="fadeInUp" data-scs-animation-delay="600">
-                                            <img src="./assets/img/500x380/img1.png" class="img-fluid"
-                                                alt="image-description">
+                                            <img src="{{ url('') }}/assets/img/500x380/img1.png"
+                                                class="img-fluid" alt="image-description">
                                         </div>
                                     </div>
                                 </div>
@@ -401,8 +424,8 @@
                                             </a>
                                         </div>
                                         <div data-scs-animation-in="fadeInUp" data-scs-animation-delay="600">
-                                            <img src="./assets/img/500x380/img1.png" class="img-fluid"
-                                                alt="image-description">
+                                            <img src="{{ url('') }}/assets/img/500x380/img1.png"
+                                                class="img-fluid" alt="image-description">
                                         </div>
                                     </div>
                                 </div>
@@ -422,7 +445,7 @@
                                 <a href="#"
                                     class="slider-banner__btn text-primary-blue text-uppercase font-weight-medium">Purchase</a>
                             </div>
-                            <img src="./assets/img/285x240/img1.png"
+                            <img src="{{ url('') }}/assets/img/285x240/img1.png"
                                 class="img-fluid position-absolute bottom-n60 right-n60" alt="image-description">
                         </div>
                         <div class="slider-banner flex-grow-1 ml-md-3 ml-xl-0 bg-gray-200 p-6 position-relative overflow-hidden"
@@ -435,7 +458,7 @@
                                 <a href="#"
                                     class="slider-banner__btn text-primary-blue text-uppercase font-weight-medium">Purchase</a>
                             </div>
-                            <img src="./assets/img/250x225/img1.png"
+                            <img src="{{ url('') }}/assets/img/250x225/img1.png"
                                 class="img-fluid position-absolute bottom-0 right-n60" alt="image-description">
                         </div>
                     </div>
@@ -494,7 +517,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img1.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img1.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -541,7 +564,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img2.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img2.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -586,7 +609,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img3.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img3.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -631,7 +654,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img4.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img4.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -676,7 +699,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img5.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img5.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -721,7 +744,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img6.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img6.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -767,7 +790,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img7.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img7.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -812,7 +835,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img8.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img8.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -883,7 +906,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img1.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img1.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -930,7 +953,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img2.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img2.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -975,7 +998,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img3.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img3.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1020,7 +1043,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img4.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img4.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1065,7 +1088,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img5.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img5.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1110,7 +1133,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img6.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img6.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1156,7 +1179,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img7.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img7.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1201,7 +1224,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img8.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img8.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1272,7 +1295,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img1.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img1.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1319,7 +1342,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img2.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img2.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1364,7 +1387,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img3.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img3.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1409,7 +1432,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img4.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img4.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1454,7 +1477,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img5.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img5.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1499,7 +1522,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img6.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img6.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1545,7 +1568,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img7.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img7.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1590,7 +1613,7 @@
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
                                         <a href="./single-product-v2.html" class="d-block"><img
-                                                src="./assets/img/120x180/img8.jpg"
+                                                src="{{ url('') }}/assets/img/120x180/img8.jpg"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                 alt="image-description"></a>
                                     </div>
@@ -1664,7 +1687,7 @@
                         <div class="media d-block d-md-flex px-4 px-md-6 px-xl-8d75">
                             <div class="woocommerce-loop-product__thumbnail mb-4 mb-md-0">
                                 <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                        src="./assets/img/200x327/img1.jpg"
+                                        src="{{ url('') }}/assets/img/200x327/img1.jpg"
                                         class="attachment-shop_catalog size-shop_catalog wp-post-image d-block mx-auto"
                                         alt="image-description"></a>
                             </div>
@@ -1739,7 +1762,7 @@
                         <div class="media d-block d-md-flex px-4 px-md-6 px-xl-8d75">
                             <div class="woocommerce-loop-product__thumbnail mb-4 mb-md-0">
                                 <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                        src="./assets/img/200x327/img2.jpg"
+                                        src="{{ url('') }}/assets/img/200x327/img2.jpg"
                                         class="attachment-shop_catalog size-shop_catalog wp-post-image d-block mx-auto"
                                         alt="image-description"></a>
                             </div>
@@ -1813,7 +1836,7 @@
                         <div class="media d-block d-md-flex px-4 px-md-6 px-xl-8d75">
                             <div class="woocommerce-loop-product__thumbnail mb-4 mb-md-0">
                                 <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                        src="./assets/img/200x327/img3.jpg"
+                                        src="{{ url('') }}/assets/img/200x327/img3.jpg"
                                         class="attachment-shop_catalog size-shop_catalog wp-post-image d-block mx-auto"
                                         alt="image-description"></a>
                             </div>
@@ -1888,7 +1911,7 @@
                         <div class="media d-block d-md-flex px-4 px-md-6 px-xl-8d75">
                             <div class="woocommerce-loop-product__thumbnail mb-4 mb-md-0">
                                 <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                        src="./assets/img/200x327/img4.jpg"
+                                        src="{{ url('') }}/assets/img/200x327/img4.jpg"
                                         class="attachment-shop_catalog size-shop_catalog wp-post-image d-block mx-auto"
                                         alt="image-description"></a>
                             </div>
@@ -1967,7 +1990,7 @@
             <div class="row align-items-center">
                 <div class="col-md-5 col-lg-4 col-xl-3 mb-4 mb-md-0">
                     <div class="bg-img-hero min-height-440 rounded"
-                        style="background-image: url(./assets/img/300x440/img2.jpg);">
+                        style="background-image: url({{ url('') }}/assets/img/300x440/img2.jpg);">
                         <div class="p-5">
                             <h4 class="font-size-22">Romance</h4>
                             <p>Lorem ipsum dolor consectetu eiusmo tempor ametsum.</p>
@@ -2006,7 +2029,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img1.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img1.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2055,7 +2078,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img2.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img2.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2101,7 +2124,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img3.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img3.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2148,7 +2171,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img4.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img4.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2194,7 +2217,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img5.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img5.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2243,7 +2266,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img6.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img6.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2289,7 +2312,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img7.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img7.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2336,7 +2359,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img8.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img8.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2387,7 +2410,7 @@
             <div class="row align-items-center">
                 <div class="col-md-5 col-lg-4 col-xl-3 mb-4 mb-md-0">
                     <div class="bg-img-hero min-height-440 rounded"
-                        style="background-image: url(./assets/img/300x440/img1.jpg);">
+                        style="background-image: url({{ url('') }}/assets/img/300x440/img1.jpg);">
                         <div class="p-5">
                             <h4 class="font-size-22">Health</h4>
                             <p>Lorem ipsum dolor consectetu eiusmo tempor ametsum.</p>
@@ -2426,7 +2449,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img1.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img1.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2475,7 +2498,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img2.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img2.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2521,7 +2544,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img3.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img3.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2568,7 +2591,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img4.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img4.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2614,7 +2637,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img5.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img5.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2663,7 +2686,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img6.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img6.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2709,7 +2732,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img7.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img7.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2756,7 +2779,7 @@
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
                                             <a href="./single-product-v2.html" class="d-block"><img
-                                                    src="./assets/img/120x180/img8.jpg"
+                                                    src="{{ url('') }}/assets/img/120x180/img8.jpg"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description"></a>
                                         </div>
@@ -2814,7 +2837,8 @@
                         <a href="./v2.html" class="banner_btn btn btn-wide btn-primary-blue text-white">Explore
                             Books</a>
                     </div>
-                    <img src="./assets/img/450x235/img1.png" class="img-fluid" alt="image-description">
+                    <img src="{{ url('') }}/assets/img/450x235/img1.png" class="img-fluid"
+                        alt="image-description">
                 </div>
             </div>
         </div>
@@ -2852,7 +2876,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img1.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img1.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -2896,7 +2920,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img2.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img2.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -2940,7 +2964,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img3.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img3.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -2986,7 +3010,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img4.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img4.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -3030,7 +3054,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img5.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img5.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -3074,7 +3098,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img6.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img6.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -3118,7 +3142,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img7.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img7.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -3164,7 +3188,7 @@
                             class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
                                 <a href="./single-product-v2.html" class="d-block"><img
-                                        src="./assets/img/120x180/img8.jpg"
+                                        src="{{ url('') }}/assets/img/120x180/img8.jpg"
                                         class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                         alt="image-description"></a>
                             </div>
@@ -3233,7 +3257,7 @@
                 <div class="product product__card product__card-v2 border-right">
                     <div class="media p-3 p-md-4d875">
                         <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                src="./assets/img/120x180/img1.jpg" alt="image-description"></a>
+                                src="{{ url('') }}/assets/img/120x180/img1.jpg" alt="image-description"></a>
                         <div class="media-body ml-4d875">
                             <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
                                     href="./single-product-v2.html" tabindex="0">Hard Cover</a></div>
@@ -3255,7 +3279,7 @@
                 <div class="product product__card product__card-v2 border-right">
                     <div class="media p-3 p-md-4d875">
                         <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                src="./assets/img/120x180/img2.jpg" alt="image-description"></a>
+                                src="{{ url('') }}/assets/img/120x180/img2.jpg" alt="image-description"></a>
                         <div class="media-body ml-4d875">
                             <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
                                     href="./single-product-v2.html" tabindex="0">Hard Cover</a></div>
@@ -3277,7 +3301,7 @@
                 <div class="product product__card product__card-v2 border-right">
                     <div class="media p-3 p-md-4d875">
                         <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                src="./assets/img/120x180/img3.jpg" alt="image-description"></a>
+                                src="{{ url('') }}/assets/img/120x180/img3.jpg" alt="image-description"></a>
                         <div class="media-body ml-4d875">
                             <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
                                     href="./single-product-v2.html" tabindex="0">Hard Cover</a></div>
@@ -3299,7 +3323,7 @@
                 <div class="product product__card product__card-v2 border-right">
                     <div class="media p-3 p-md-4d875">
                         <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                src="./assets/img/120x180/img4.jpg" alt="image-description"></a>
+                                src="{{ url('') }}/assets/img/120x180/img4.jpg" alt="image-description"></a>
                         <div class="media-body ml-4d875">
                             <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
                                     href="./single-product-v2.html" tabindex="0">Hard Cover</a></div>
@@ -3321,7 +3345,7 @@
                 <div class="product product__card product__card-v2 border-right">
                     <div class="media p-3 p-md-4d875">
                         <a href="./single-product-v2.html" class="d-block" tabindex="0"><img
-                                src="./assets/img/120x180/img5.jpg" alt="image-description"></a>
+                                src="{{ url('') }}/assets/img/120x180/img5.jpg" alt="image-description"></a>
                         <div class="media-body ml-4d875">
                             <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
                                     href="./single-product-v2.html" tabindex="0">Hard Cover</a></div>
@@ -3353,7 +3377,8 @@
             <ul class="blog-posts list-unstyled my-0 row row-cols-md-2 row-cols-lg-3">
                 <li class="blog-post col mb-4 mb-lg-0">
                     <div class="blog-post__inner">
-                        <a href="../blog/blog-single.html"><img src="./assets/img/445x300/img1.jpg"
+                        <a href="../blog/blog-single.html"><img
+                                src="{{ url('') }}/assets/img/445x300/img1.jpg"
                                 class="img-fluid rounded-md mb-3" alt="image-description"></a>
                         <div class="blog-post__body">
                             <ul class="blog-post__meta list-unstyled d-flex font-size-2 mb-2d75">
@@ -3370,7 +3395,8 @@
                 </li>
                 <li class="blog-post col mb-4 mb-lg-0">
                     <div class="blog-post__inner">
-                        <a href="../blog/blog-single.html"><img src="./assets/img/445x300/img2.jpg"
+                        <a href="../blog/blog-single.html"><img
+                                src="{{ url('') }}/assets/img/445x300/img2.jpg"
                                 class="img-fluid rounded-md mb-3" alt="image-description"></a>
                         <div class="blog-post__body">
                             <ul class="blog-post__meta list-unstyled d-flex font-size-2 mb-2d75">
@@ -3388,7 +3414,8 @@
                 </li>
                 <li class="blog-post col mb-4 mb-lg-0">
                     <div class="blog-post__inner">
-                        <a href="../blog/blog-single.html"><img src="./assets/img/445x300/img3.jpg"
+                        <a href="../blog/blog-single.html"><img
+                                src="{{ url('') }}/assets/img/445x300/img3.jpg"
                                 class="img-fluid rounded-md mb-3" alt="image-description"></a>
                         <div class="blog-post__body">
                             <ul class="blog-post__meta list-unstyled d-flex font-size-2 mb-2d75">
@@ -3681,23 +3708,26 @@
         // End scroll to top button
     </script>
 
-    <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
-    <script src="./assets/vendor/popper.js/dist/umd/popper.min.js"></script>
-    <script src="./assets/vendor/bootstrap/bootstrap.min.js"></script>
-    <script src="./assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="./assets/vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js"></script>
-    <script src="./assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="./assets/vendor/slick-carousel/slick/slick.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js"></script>
+    <script src="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js">
+    </script>
+    <script src="{{ url('') }}/assets/vendor/slick-carousel/slick/slick.min.js"></script>
 
-    <script src="./assets/js/hs.core.js"></script>
-    <script src="./assets/js/validator.js"></script>
-    <script src="./assets/js/components/hs.unfold.js"></script>
-    <script src="./assets/js/components/hs.malihu-scrollbar.js"></script>
-    <script src="./assets/js/components/hs.slick-carousel.js"></script>
-    <script src="./assets/js/components/hs.show-animation.js"></script>
-    <script src="./assets/js/components/hs.selectpicker.js"></script>
-
+    <script src="{{ url('') }}/assets/js/hs.core.js"></script>
+    <script src="{{ url('') }}/assets/js/validator.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.unfold.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.malihu-scrollbar.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.slick-carousel.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.show-animation.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.selectpicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         $(document).on('ready', function() {
@@ -3781,6 +3811,7 @@
             ]
         });
     </script>
+    @include('layout.notification')
     @yield('custom_js')
 </body>
 

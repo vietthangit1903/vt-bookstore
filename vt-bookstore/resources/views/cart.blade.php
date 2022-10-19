@@ -50,7 +50,7 @@ Shop Cart
                                                 <td class="product-name" data-title="Product">
                                                     <div class="d-flex align-items-center">
                                                         <a href="#">
-                                                            <img src="./assets/img/90x138/img1.jpg"
+                                                            <img src="{{ url('') }}/assets/img/90x138/img1.jpg"
                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
                                                                 alt="">
                                                         </a>
@@ -122,7 +122,7 @@ Shop Cart
                                                 <td class="product-name" data-title="Product">
                                                     <div class="d-flex align-items-center">
                                                         <a href="#">
-                                                            <img src="./assets/img/90x138/img2.jpg"
+                                                            <img src="{{ url('') }}/assets/img/90x138/img2.jpg"
                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
                                                                 alt="">
                                                         </a>
@@ -194,7 +194,7 @@ Shop Cart
                                                 <td class="product-name" data-title="Product">
                                                     <div class="d-flex align-items-center">
                                                         <a href="#">
-                                                            <img src="./assets/img/90x138/img3.jpg"
+                                                            <img src="{{ url('') }}/assets/img/90x138/img3.jpg"
                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
                                                                 alt="">
                                                         </a>

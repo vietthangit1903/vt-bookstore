@@ -12,15 +12,18 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./assets/vendor/fontawesome-free-6.2.0-web/css/all.min.css">
-    <link rel="stylesheet" href="./assets/vendor/animate.css/animate.css">
-    <link rel="stylesheet" href="./assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="./assets/vendor/slick-carousel/slick/slick.css" />
-    <link rel="stylesheet" href="./assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/fontawesome-free-6.2.0-web/css/all.min.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/animate.css/animate.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
 
 
-    <link rel="stylesheet" href="./assets/css/loader.css">
-    <link rel="stylesheet" href="./assets/css/theme.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/css/loader.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/css/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body @class([
@@ -42,9 +45,6 @@
     </div>
 
     @include('layout.header')
-
-    @include('layout.login')
-
 
     @include('layout.cart')
 
@@ -86,24 +86,26 @@
         // End scroll to top button
     </script>
 
-    <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
-    <script src="./assets/vendor/popper.js/dist/umd/popper.min.js"></script>
-    <script src="./assets/vendor/bootstrap/bootstrap.min.js"></script>
-    <script src="./assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="./assets/vendor/slick-carousel/slick/slick.min.js"></script>
-    <script src="./assets/vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js"></script>
-    <script src="./assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/slick-carousel/slick/slick.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js"></script>
+    <script src="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <script src="./assets/js/hs.core.js"></script>
-    <script src="./assets/js/validator.js"></script>
-    <script src="./assets/js/components/hs.unfold.js"></script>
-    <script src="./assets/js/components/hs.malihu-scrollbar.js"></script>
-    <script src="./assets/js/components/hs.header.js"></script>
-    <script src="./assets/js/components/hs.slick-carousel.js"></script>
-    <script src="./assets/js/components/hs.selectpicker.js"></script>
-    <script src="./assets/js/components/hs.show-animation.js"></script>
-
+    <script src="{{ url('') }}/assets/js/hs.core.js"></script>
+    <script src="{{ url('') }}/assets/js/validator.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.unfold.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.malihu-scrollbar.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.header.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.slick-carousel.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.selectpicker.js"></script>
+    <script src="{{ url('') }}/assets/js/components/hs.show-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         $(document).on('ready', function() {
@@ -160,6 +162,7 @@
             preloader.style.display = "none";
         })
     </script>
+    @include('layout.notification')
     @yield('custom_js')
 </body>
 

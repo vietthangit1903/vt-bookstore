@@ -108,7 +108,7 @@ Validator.isEmail = function (selector, message = 'Wrong email format') {
     };
 };
 
-Validator.isPassword = function (selector, message = 'Password must contain uppercase and lowercase letters, numbers, special characters, and at least eight characters.') {
+Validator.isPassword = function (selector, message = 'Password must contain UPPERCASE and lowercase letters, numbers, special characters, and at least 8 characters.') {
     return {
         selector: selector,
         test: function (value) {

@@ -15,19 +15,36 @@
                                 class="fa-regular fa-heart"></i></a></li>
                     <li class="nav-item">
 
-                        <a id="sidebarNavToggler" href="javascript:;" role="button" class="nav-link link-black-100"
-                            aria-controls="sidebarContent" aria-haspopup="true" aria-expanded="false"
-                            data-unfold-event="click" data-unfold-hide-on-scroll="false"
-                            data-unfold-target="#sidebarContent" data-unfold-type="css-animation"
-                            data-unfold-overlay='{
-                                "className": "u-sidebar-bg-overlay",
-                                "background": "rgba(0, 0, 0, .7)",
-                                "animationSpeed": 500
-                            }'
-                            data-unfold-animation-in="fadeInRight" data-unfold-animation-out="fadeOutRight"
-                            data-unfold-duration="500">
-                            <i class="fa-regular fa-user"></i>
-                        </a>
+                        <div class="dropdown">
+                            <a href="#" class="nav-link link-black-100 position-relative" id="userDropdownInvoker"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                data-unfold-event="click" data-unfold-target="#userDropdownMenu"
+                                data-unfold-type="css-animation" data-unfold-duration="200" data-unfold-delay="50"
+                                data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp"
+                                data-unfold-animation-out="fadeOut">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+
+                            <ul id="userDropdownMenu"
+                                class="dropdown-unfold dropdown-menu dropdown-menu-right font-size-2 rounded-0 border-gray-900"
+                                aria-labelledby="userDropdownInvoker">
+                                @auth
+                                    <li class="ml-3"><h5>{{Auth()->user()->fullName}}</h5></li>
+                                    <li><a href="#" class="dropdown-item link-black-100">My account</a></li>
+                                    <li><a href="#" class="dropdown-item link-black-100">Shopping Cart</a></li>
+                                    <li><a href="#" class="dropdown-item link-black-100">Wishlist</a></li>
+                                    <li><a href="{{ route('auth.logout') }}" class="dropdown-item link-black-100">Log out</a></li>
+                                @endauth
+                                @guest
+                                    <li><a href="{{ route('auth.login') }}" class="dropdown-item link-black-100">Log
+                                            in</a></li>
+                                    <li><a href="{{ route('guest.register') }}"
+                                            class="dropdown-item link-black-100">Register</a></li>
+                                    <li><a href="#" class="dropdown-item link-black-100">Forgot Password</a>
+                                    </li>
+                                @endguest
+                            </ul>
+                        </div>
 
                     </li>
                     <li class="nav-item">
@@ -81,7 +98,8 @@
                 </div>
                 <div class="site-branding pr-md-4">
                     <a href="{{ route('home') }}" class="d-block mb-1">
-                        <img src="./assets/img/header-logo-2.png" alt="" style="width: 100px;">
+                        <img src="{{ url('') }}/assets/img/header-logo-2.png" alt=""
+                            style="width: 100px;">
                     </a>
                 </div>
                 <div class="site-navigation mr-auto d-none d-xl-block">
@@ -125,7 +143,8 @@
                             <ul id="shopDropdownMenu" class="dropdown-unfold dropdown-menu rounded-0 border-gray-900"
                                 aria-labelledby="shopDropdownInvoker">
                                 <li><a href="./v1.html" class="dropdown-item link-black-100">Book List </a></li>
-                                <li><a href="{{route('cart')}}" class="dropdown-item link-black-100">Book cart</a></li>
+                                <li><a href="{{ route('cart') }}" class="dropdown-item link-black-100">Book cart</a>
+                                </li>
                                 <li><a href="./checkout.html" class="dropdown-item link-black-100">Book checkout</a>
                                 </li>
                                 <li><a href="./my-account.html" class="dropdown-item link-black-100">My Account</a>

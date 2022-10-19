@@ -49,9 +49,9 @@
     --secondary-black-100: #19110b;
     --secondary-black-200: #1c2633;
     --dark-1: #2d3942;
-    --red-1: #ff4f3a;
-    --fb-color: #1877f2;
-    --gg-color: #ea4335;
+    --red-1: #fd4530;
+    --fb-color: #089cf1;
+    --gg-color: #dd3c26;
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
@@ -3359,20 +3359,19 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-fb:hover {
-    border-width: 3px;
-    box-shadow: 0 0 0 .2rem rgba(24, 119, 242, .5)
+    background-color: var(--fb-color);
+    color: var(--white);
 }
 
 .btn-gg:hover{
-    border-width: 3px;
-    box-shadow: 0 0 0 .2rem rgba(234, 67, 53, .5)
+    background-color: var(--gg-color);
+    color: var(--white);
 }
 
 .btn-fb:focus, .btn-fb.focus {
-    color: var(--fb-color);
-    background-color: var(--white);
+    background-color: var(--fb-color);
+    color: var(--white);
     border-color: var(--fb-color);
-    box-shadow: 0 0 0 .2rem rgba(24, 119, 242, .5)
 }
 
 .btn-fb.disabled, .btn-fb:disabled {
@@ -23275,7 +23274,7 @@ footer .bootstrap-select .dropup .dropdown-menu {
 }
 
 .topbar .dropdown-menu .dropdown-item:hover {
-    color: var(--red);
+    color: var(--blue);
     padding: .375rem 1.6rem .375rem 1.875rem
 }
 

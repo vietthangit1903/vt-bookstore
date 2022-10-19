@@ -35,7 +35,7 @@
                     <div class="col-lg-4 mb-6 mb-lg-0">
                         <div class="pb-6">
                             <a href="./index.html" class="d-inline-block mb-5">
-                                <img src="./assets/img/header-logo-2.png" style="height: 70px" alt="">
+                                <img src="{{ url('') }}/assets/img/header-logo-2.png" style="height: 70px" alt="">
                             </a>
                             <address class="font-size-2 mb-5">
                                 <span class="mb-2 font-weight-normal text-dark">
@@ -187,7 +187,7 @@
 
                     <div class="ml-auto d-lg-flex align-items-center">
                         <div class="mb-4 mb-lg-0 mr-5">
-                            <img class="img-fluid" src="./assets/img/324x38/img1.png" alt="Image-Description">
+                            <img class="img-fluid" src="{{ url('') }}/assets/img/324x38/img1.png" alt="Image-Description">
                         </div>
 
                         <select class="js-select selectpicker dropdown-select mb-3 mb-lg-0"
