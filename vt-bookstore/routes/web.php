@@ -31,9 +31,6 @@ Route::prefix('/auth')->group(function () {
     Route::get('/google', [GoogleAuthController::class, 'Redirect'])->name('auth.google');
     Route::get('/google/callback', [GoogleAuthController::class, 'Callback'])->name('auth.google.callback');
 
-    Route::get('/facebook', [FacebookAuthController::class, 'Redirect'])->name('auth.facebook');
-    Route::get('/facebook/callback', [FacebookAuthController::class, 'Callback'])->name('auth.facebook.callback');
-
 });
 
 Route::view('/', 'home')->name('home');

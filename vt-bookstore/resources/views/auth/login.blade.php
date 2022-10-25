@@ -74,10 +74,6 @@
                     </div>
                     <div class="social-login pt-4d75 border-top ">
                         <div class="mt-2">
-                            <a href="{{ route('auth.facebook') }}" class="btn btn-block py-3 rounded-0 btn-fb font-weight-medium"> <img
-                                    src="{{ url('') }}/assets/img/fb-icon-removebg.png" alt=""> Login with Facebook</a>
-                        </div>
-                        <div class="mt-3">
                             <a href="{{ route('auth.google') }}" class="btn btn-block btn-gg py-3 rounded-0 pr-3"> <img
                                     src="{{ url('') }}/assets/img/gg-icon-removebg.png" alt=""> Login with Google</a>
                         </div>
