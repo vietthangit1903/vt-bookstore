@@ -74,7 +74,7 @@
                     </div>
                     <div class="social-login pt-4d75 border-top ">
                         <div class="mt-2">
-                            <a href="#" class="btn btn-block py-3 rounded-0 btn-fb font-weight-medium"> <img
+                            <a href="{{ route('auth.facebook') }}" class="btn btn-block py-3 rounded-0 btn-fb font-weight-medium"> <img
                                     src="{{ url('') }}/assets/img/fb-icon-removebg.png" alt=""> Login with Facebook</a>
                         </div>
                         <div class="mt-3">

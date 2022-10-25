@@ -155,13 +155,7 @@
             });
         });
     </script>
-    <script>
-        // Preloader
-        const preloader = document.querySelector('#preloader')
-        window.addEventListener('load', function() {
-            preloader.style.display = "none";
-        })
-    </script>
+    <script src="{{ url('') }}/assets/js/main.js"></script>
     @include('layout.notification')
     @yield('custom_js')
 </body>

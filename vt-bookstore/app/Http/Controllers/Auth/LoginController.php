@@ -36,6 +36,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return back();
+        return redirect()->route('auth.login')->with('info', 'Bye, see you again!');
     }
 }

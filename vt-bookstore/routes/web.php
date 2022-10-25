@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\FacebookAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\GuestRegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->group(function () {
+Route::prefix('/auth')->group(function () {
     Route::get('/login', [LoginController::class, 'ShowLoginForm'])->name('auth.login');
     Route::post('/login', [LoginController::class, 'Login']);
 
@@ -28,9 +31,19 @@ Route::prefix('auth')->group(function () {
     Route::get('/google', [GoogleAuthController::class, 'Redirect'])->name('auth.google');
     Route::get('/google/callback', [GoogleAuthController::class, 'Callback'])->name('auth.google.callback');
 
+    Route::get('/facebook', [FacebookAuthController::class, 'Redirect'])->name('auth.facebook');
+    Route::get('/facebook/callback', [FacebookAuthController::class, 'Callback'])->name('auth.facebook.callback');
+
 });
 
 Route::view('/', 'home')->name('home');
+
+Route::prefix('/user')->middleware('auth')->group(function(){
+    Route::get('my-account',[UserController::class, 'showUserAccount'])->name('my-account');
+    Route::view('/change-password', 'auth.changePassword')->name('change-password');
+    Route::post('/change-password', [ChangePasswordController::class, 'changePassword'])->name('change-password');
+
+});
 
 Route::get('/cart', function () {
     return view('cart');

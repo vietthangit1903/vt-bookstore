@@ -30,9 +30,10 @@
                                 aria-labelledby="userDropdownInvoker">
                                 @auth
                                     <li class="ml-3"><h5>{{Auth()->user()->fullName}}</h5></li>
-                                    <li><a href="#" class="dropdown-item link-black-100">My account</a></li>
+                                    <li><a href="{{ route('my-account') }}" class="dropdown-item link-black-100">My account</a></li>
                                     <li><a href="#" class="dropdown-item link-black-100">Shopping Cart</a></li>
                                     <li><a href="#" class="dropdown-item link-black-100">Wishlist</a></li>
+                                    <li><a href="{{ route('change-password') }}" class="dropdown-item link-black-100">Change password</a></li>
                                     <li><a href="{{ route('auth.logout') }}" class="dropdown-item link-black-100">Log out</a></li>
                                 @endauth
                                 @guest

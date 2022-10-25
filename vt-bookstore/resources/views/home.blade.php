@@ -111,12 +111,12 @@
                                         <i class="fa-regular fa-user font-size-5"></i>
                                         <div class="ml-2 d-none d-lg-block">
                                             @auth
-                                            <span class="text-white font-size-1">Hello</span>
-                                            <div class="">{{Auth()->user()->fullName}}</div>
+                                                <span class="text-white font-size-1">Hello</span>
+                                                <div class="">{{ Auth()->user()->fullName }}</div>
                                             @endauth
                                             @guest
-                                            <span class="text-white font-size-1">Sign In</span>
-                                            <div class="">My Account</div>
+                                                <span class="text-white font-size-1">Sign In</span>
+                                                <div class="">My Account</div>
                                             @endguest
                                         </div>
                                     </div>
@@ -125,10 +125,14 @@
                                     class="dropdown-unfold dropdown-menu dropdown-menu-right font-size-2 rounded-0 border-gray-900"
                                     aria-labelledby="userDropdownInvoker">
                                     @auth
-                                        <li><a href="#" class="dropdown-item link-black-100">My account</a></li>
+                                        <li><a href="{{ route('my-account') }}" class="dropdown-item link-black-100">My
+                                                account</a></li>
                                         <li><a href="#" class="dropdown-item link-black-100">Shopping Cart</a></li>
                                         <li><a href="#" class="dropdown-item link-black-100">Wishlist</a></li>
-                                        <li><a href="{{ route('auth.logout') }}" class="dropdown-item link-black-100">Log out</a></li>
+                                        <li><a href="{{ route('change-password') }}"
+                                                class="dropdown-item link-black-100">Change password</a></li>
+                                        <li><a href="{{ route('auth.logout') }}" class="dropdown-item link-black-100">Log
+                                                out</a></li>
                                     @endauth
                                     @guest
                                         <li><a href="{{ route('auth.login') }}" class="dropdown-item link-black-100">Log
@@ -3774,43 +3778,7 @@
             });
         });
     </script>
-    <script>
-        // Preloader
-        const preloader = document.querySelector('#preloader')
-        window.addEventListener('load', function() {
-            preloader.style.display = "none";
-        })
-    </script>
-    <script>
-        Validator({
-            form: '#login',
-            errorSelector: '.form-message',
-            rules: [
-                Validator.isRequired('#signinEmail', 'Please enter your email address'),
-                Validator.isEmail('#signinEmail'),
-
-                Validator.isRequired('#signinPassword', 'Please enter your password'),
-            ]
-        });
-        Validator({
-            form: '#signup',
-            errorSelector: '.form-message',
-            rules: [
-                Validator.isRequired('#signupFullname', 'Please enter your full name'),
-
-                Validator.isRequired('#signupEmail', 'Please enter your email address'),
-                Validator.isEmail('#signupEmail'),
-
-                Validator.isRequired('#signupPassword', 'Please enter your password'),
-                Validator.isPassword('#signupPassword'),
-
-                Validator.isRequired('#signupConfirmPassword', 'Please enter your password confirmation'),
-                Validator.isConfirmed('#signupConfirmPassword', function() {
-                    return document.querySelector('#signup #signupPassword').value;
-                }, 'Password confirmation is not match')
-            ]
-        });
-    </script>
+    <script src="{{ url('') }}/assets/js/main.js"></script>
     @include('layout.notification')
     @yield('custom_js')
 </body>
