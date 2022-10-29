@@ -40,6 +40,9 @@ Route::prefix('/user')->middleware('auth')->group(function(){
     Route::view('/change-password', 'auth.changePassword')->name('change-password');
     Route::post('/change-password', [ChangePasswordController::class, 'changePassword'])->name('change-password');
 
+    Route::get('/address', [UserController::class, 'showAddressView'])->name('user-address');
+    Route::post('/address', [UserController::class, 'saveAddress'])->name('user-address');
+
 });
 
 Route::get('/cart', function () {

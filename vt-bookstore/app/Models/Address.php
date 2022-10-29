@@ -11,6 +11,17 @@ class Address extends Model
 
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 
+        'address',
+        'user_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

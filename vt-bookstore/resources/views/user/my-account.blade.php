@@ -45,7 +45,7 @@
                                         <span class="text-gray-600 font-size-2">{{ $address->address }}</span>
                                     </address>
                                     <div class="d-flex justify-content-around flex-wrap">
-                                        <a class="btn btn-dark rounded-0 font-weight-medium text-white w-100 m-2">Edit</a>
+                                        <a class="btn btn-dark rounded-0 font-weight-medium text-white w-100 m-2" href="{{ route('user-address', ['id'=>$address->id]) }}">Edit</a>
                                         <a class="btn btn-dark rounded-0 font-weight-medium text-white w-100 m-2">Remove</a>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
 
                         <div class="col mb-4 align-self-center">
                             <a class="mb-6 mb-md-0 p-4 border d-flex flex-column text-dark justify-content-center"
-                                href="#">
+                            href="{{ route('user-address') }}">
                                 <h6 class="font-weight-medium font-size-22 mb-3 text-center"> Add new address
                                 </h6>
                                 <i class="fa-solid fa-plus  font-size-14 text-center"></i>
