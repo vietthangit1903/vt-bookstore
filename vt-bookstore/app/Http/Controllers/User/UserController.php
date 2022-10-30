@@ -8,6 +8,7 @@ use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -46,7 +47,7 @@ class UserController extends Controller
                 $address->name = $input['addressName'];
             $address->address = $input['addressDetail'];
             $address->save();
-            return back()->with('success', 'Your address was successfully updated');
+            return redirect()->route('my-account')->with('success', 'Your address was successfully updated');
             }
             else
                 return back()->with('error', 'Can not find address you are looking for');
@@ -59,7 +60,26 @@ class UserController extends Controller
             ]);
             return redirect()->route('my-account')->with('success', 'Your address has been created successfully');
         }
-            
-            
+              
+    }
+
+    public function deleteAddress(Request $request) {
+        $addressId = $request->input('id');
+        $address = Address::where(['id' => $addressId, 'user_id' => Auth::id()])->first();
+        if($address){
+            if($address->delete()){
+                return response()->json([
+                    'message' => $address->name . ' has been deleted successfully!'
+                ], Response::HTTP_OK);
+            }
+            else{
+                return response()->json([
+                    'message' => $address->name . ' can not be deleted successfully!'
+                ], Response::HTTP_BAD_REQUEST);
+            }
+        }
+        return response()->json([
+            'message' => $address->name . ' does not exist!'
+        ], Response::HTTP_NOT_FOUND);
     }
 }

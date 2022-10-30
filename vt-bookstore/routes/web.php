@@ -42,6 +42,7 @@ Route::prefix('/user')->middleware('auth')->group(function(){
 
     Route::get('/address', [UserController::class, 'showAddressView'])->name('user-address');
     Route::post('/address', [UserController::class, 'saveAddress'])->name('user-address');
+    Route::post('/address/delete', [UserController::class, 'deleteAddress'])->name('user-delete-address');
 
 });
 
