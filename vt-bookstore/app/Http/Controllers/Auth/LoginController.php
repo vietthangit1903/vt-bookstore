@@ -22,8 +22,13 @@ class LoginController extends Controller
     public function Login(LoginRequest $loginRequest)
     {
         $input = $loginRequest->validated();
-        $isRemember = $input['remember'] ?? false;
+        $isRemember = $input['rememberMe'] ?? false;
         if (Auth::attempt(['email' => $input['email'], 'password' => $input['password']], $isRemember)) {
+            $user = Auth::user();
+            if($user->role === "admin"){
+                session(['isAdmin' => true]);
+                return redirect()->route('admin.dashboard')->with('success', 'Welcome! You have successfully signed in');
+            }
             return redirect()->route('home')->with('success', 'Welcome! You have successfully signed in');
         }
         return redirect()->back()->withInput()->with('error', 'Your credentials have been incorrect');

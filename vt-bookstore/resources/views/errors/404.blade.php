@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./assets/vendor/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" href="./assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"> --}}
 
-    <link rel="stylesheet" href="./assets/css/theme.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/css/theme.css">
 </head>
 
 <body>

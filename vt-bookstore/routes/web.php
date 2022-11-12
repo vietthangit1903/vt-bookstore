@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\FacebookAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
@@ -44,6 +45,11 @@ Route::prefix('/user')->middleware('auth')->group(function(){
     Route::post('/address', [UserController::class, 'saveAddress'])->name('user-address');
     Route::post('/address/delete', [UserController::class, 'deleteAddress'])->name('user-delete-address');
 
+});
+
+Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function(){
+    Route::view('/', 'admin.dashboard')->name('dashboard');
+    Route::get('/categories', [CategoriesController::class, 'showCategories'])->name('categories');
 });
 
 Route::get('/cart', function () {

@@ -127,6 +127,10 @@
                                     @auth
                                         <li><a href="{{ route('my-account') }}" class="dropdown-item link-black-100">My
                                                 account</a></li>
+                                        @if (Session::has('isAdmin'))
+                                            <li><a href="{{ route('admin.dashboard') }}"
+                                                    class="dropdown-item link-black-100">Admin Page</a></li>
+                                        @endif
                                         <li><a href="#" class="dropdown-item link-black-100">Shopping Cart</a></li>
                                         <li><a href="#" class="dropdown-item link-black-100">Wishlist</a></li>
                                         <li><a href="{{ route('change-password') }}"

@@ -5384,6 +5384,11 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
     width: 100%
 }
 
+.table-link{
+    color: var(--secondary-black-100);
+
+}
+
 .fade {
     transition: opacity .15s linear
 }

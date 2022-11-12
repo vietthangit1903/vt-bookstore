@@ -28,8 +28,9 @@
                     </h5>
                     <h6 class="font-weight-medium font-size-7 mb-2 mb-lg-2 pb-xl-1 text-primary">Basic information</h6>
                     <div class="pb-xl-1">
-                        <h6 class="font-weight-medium font-size-26 mb-2">Full name: {{ Auth()->user()->fullName }}</h6>
-                        <p class="font-weight-medium font-size-22 mb-2">Email: {{ Auth()->user()->email }}</p>
+                        <h6 class="font-weight-medium font-size-26 mb-3">Full name: {{ Auth()->user()->fullName }}</h6>
+                        <p class="font-weight-medium font-size-22 mb-0">Email: {{ Auth()->user()->email }}</p>
+                        <p class="font-weight-medium font-size-22">Role: {{ Auth()->user()->role }}</p>
                     </div>
 
                 </div>
