@@ -50,6 +50,7 @@ Route::prefix('/user')->middleware('auth')->group(function(){
 Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::view('/', 'admin.dashboard')->name('dashboard');
     Route::get('/categories', [CategoriesController::class, 'showCategories'])->name('categories');
+    Route::post('/categories', [CategoriesController::class, 'saveCategory'])->name('categories');
 });
 
 Route::get('/cart', function () {
