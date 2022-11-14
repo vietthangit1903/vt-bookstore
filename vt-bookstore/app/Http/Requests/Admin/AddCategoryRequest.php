@@ -24,7 +24,7 @@ class AddCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:categories,name',
         ];
     }
 
@@ -37,6 +37,7 @@ class AddCategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter a name of book category',
+            'name.unique' => 'This category already exists',
         ];
     }
 }

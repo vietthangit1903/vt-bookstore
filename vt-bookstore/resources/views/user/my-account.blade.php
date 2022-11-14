@@ -48,7 +48,7 @@
                                     <div class="d-flex justify-content-around flex-wrap">
                                         <a class="btn btn-dark rounded-0 font-weight-medium text-white w-100 m-2"
                                             href="{{ route('user-address', ['id' => $address->id]) }}">Edit</a>
-                                        <a class="btn btn-dark rounded-0 font-weight-medium text-white w-100 m-2 delete-address"
+                                        <a class="btn btn-dark rounded-0 font-weight-medium text-white w-100 m-2 delete"
                                             href="{{ route('user-delete-address') }}" data-csrf="{{ csrf_token() }}"
                                             data-id="{{ $address->id }}" title="Remove {{ $address->name }}"
                                             data-name="{{ $address->name }}"

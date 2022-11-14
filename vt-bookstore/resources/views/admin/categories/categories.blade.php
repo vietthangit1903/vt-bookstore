@@ -27,9 +27,9 @@
             </div>
             <form class="form-row justify-content-center mb-3" id="categories" method="POST"
                 @isset($editCategory)
-                    action="{{ route('admin.categories', ['id' => $editCategory->id]) }}"
+                    action="{{ route('admin.add-category', ['id' => $editCategory->id]) }}"
                 @else
-                    action="{{ route('admin.categories') }}"
+                    action="{{ route('admin.add-category') }}"
                 @endisset>
                 <div class="col-md-5 mb-3 mb-md-2">
                     @csrf
@@ -62,7 +62,7 @@
                         <button type="submit" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">
                             Updates category
                         </button>
-                        <a href="{{ route('admin.categories') }}" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">Cancel</a>
+                        <a href="{{url()->previous()}}" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">Cancel</a>
                     @else
                         <button type="submit" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">
                             Add new category
