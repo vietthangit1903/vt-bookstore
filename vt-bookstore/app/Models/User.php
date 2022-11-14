@@ -21,6 +21,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $fillable = [
+        'fullName', 'email', 'dob', 'image', 'role',
+    ];
+
     public function addresses()
     {
         return $this->hasMany(Address::class);

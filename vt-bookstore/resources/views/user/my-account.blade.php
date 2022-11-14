@@ -27,11 +27,22 @@
                     <h5 class="font-weight-medium font-size-9 ml-lg-1 mb-lg-8 pb-xl-1 text-center">Account Details
                     </h5>
                     <h6 class="font-weight-medium font-size-7 mb-2 mb-lg-2 pb-xl-1 text-primary">Basic information</h6>
-                    <div class="pb-xl-1">
-                        <h6 class="font-weight-medium font-size-26 mb-3">Full name: {{ Auth()->user()->fullName }}</h6>
-                        <p class="font-weight-medium font-size-22 mb-0">Email: {{ Auth()->user()->email }}</p>
-                        <p class="font-weight-medium font-size-22">Role: {{ Auth()->user()->role }}</p>
+                    <div class="row pb-xl-1">
+                        <div class="col-5 ">
+                                <h6 class="font-weight-medium font-size-26 mb-3">Full name: {{ Auth()->user()->fullName }}
+                                </h6>
+                                <p class="font-weight-medium font-size-22 mb-0">Email: {{ Auth()->user()->email }}</p>
+                                <p class="font-weight-medium font-size-22 mb-0">Date of birth: {{ Auth()->user()->dob }}</p>
+                                <p class="font-weight-medium font-size-22">Role: {{ Auth()->user()->role }}</p>
+                        </div>
+                        <div class="col-5 d-flex justify-content-center">
+                            <img src="{{asset('images/'.Auth::user()->image)}}" style="object-fit: cover; border: 2px solid var(--primary)" alt="Profile image" width="160" height="160"
+                                class="rounded-circle ">
+                        </div>
                     </div>
+                    <a class="btn btn-dark rounded-0 font-weight-medium text-white w-30 my-2"
+                    href="#">Edit basic information</a>
+
 
                 </div>
                 <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9 space-bottom-1 mb-lg-4">

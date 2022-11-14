@@ -20,7 +20,7 @@
     --white: #fff;
     --gray: #7f7f83;
     --gray-dark: #232f3e;
-    --primary: var(--red);
+    --primary: var(--blue);
     --secondary: #161619;
     --success: var(--green);
     --info: var(--cyan);
