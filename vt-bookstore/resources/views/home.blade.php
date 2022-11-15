@@ -125,6 +125,15 @@
                                     class="dropdown-unfold dropdown-menu dropdown-menu-right font-size-2 rounded-0 border-gray-900"
                                     aria-labelledby="userDropdownInvoker">
                                     @auth
+                                        <li style="text-align: center" class="mb-2">
+                                            <a href="{{ route('my-account') }}" title="My account">
+                                                <img src="{{ asset(Auth::user()->image) }}"
+                                                style="object-fit: cover; border: 2px solid var(--primary);"
+                                                alt="Profile image" width="48" height="48"
+                                                class="rounded-circle ">
+                                            </a>
+                                            
+                                        </li>
                                         <li><a href="{{ route('my-account') }}" class="dropdown-item link-black-100">My
                                                 account</a></li>
                                         @if (Session::has('isAdmin'))
@@ -223,7 +232,8 @@
                                         </li>
                                         <li><a href="./checkout.html" class="dropdown-item link-black-100">Book
                                                 checkout</a></li>
-                                        <li><a href="./my-account.html" class="dropdown-item link-black-100">My
+                                        <li><a href="{{ route('my-account') }}"
+                                                class="dropdown-item link-black-100">My
                                                 Account</a></li>
                                         <li><a href="./order-received.html" class="dropdown-item link-black-100">Order
                                                 Received</a></li>

@@ -116,7 +116,7 @@ function insertCategoriesToSideBar() {
         }).join('');
         sidebar.append(sidebarList);
         categoriesDropdown.html(dropdownList);
-        console.log(sidebarList);
+        // console.log(sidebarList);
     }).fail(function () {
         Swal.fire(
             'Error!',

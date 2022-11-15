@@ -36,7 +36,7 @@
                                 <p class="font-weight-medium font-size-22">Role: {{ Auth()->user()->role }}</p>
                         </div>
                         <div class="col-5 d-flex justify-content-center">
-                            <img src="{{asset(Auth::user()->image)}}" style="object-fit: cover; border: 2px solid var(--primary)" alt="Profile image" width="160" height="160"
+                            <img src="{{asset(Auth::user()->image)}}" style="object-fit: cover; border: 3px solid var(--light-blue)" alt="Profile image" width="160" height="160"
                                 class="rounded-circle ">
                         </div>
                     </div>
