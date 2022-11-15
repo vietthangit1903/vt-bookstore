@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <label id="imageLabel" class="form-label " for="image">Avartar Image: </label>
+                        <label id="imageLabel" class="form-label " for="image">Avatar Image: </label>
                         <input type="file" class="px-4 @error('image') is-invalid @enderror" name="image"
                             id="image">
                         <div class="form-message @error('image') invalid-feedback @enderror">
@@ -77,9 +77,10 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-block py-3 rounded-0 btn-dark">Update Account
+                    <div class="mb-3 text-center">
+                        <button type="submit" class="btn py-3 rounded-0 btn-dark w-40 mr-2">Update Account
                             Information</button>
+                        <a href="{{ url()->previous() }}" class="btn py-3 rounded-0 btn-primary w-40">Cancel</a>
                     </div>
 
 

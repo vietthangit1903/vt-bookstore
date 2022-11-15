@@ -92,14 +92,15 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-block py-3 rounded-0 btn-dark">
+                    <div class="mb-3 text-center">
+                        <button type="submit" class="btn py-3 rounded-0 btn-dark w-40 mr-2">
                             @isset($address)
                                 Save changes
                             @else
                                 Create new address
                             @endisset
                         </button>
+                        <a href="{{ url()->previous() }}" class="btn py-3 rounded-0 btn-primary w-40">Cancel</a>
                     </div>
                 </div>
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddCategoryRequest extends FormRequest
+class AuthorsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,12 @@ class AddCategoryRequest extends FormRequest
     {
         return [
             'id'=>'nullable',
-            'name' => 'required|max:255|unique:categories,name',
+            'name' => 'required|max: 255',
+            'description' => 'required',
         ];
     }
 
-     /**
+    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -37,9 +38,10 @@ class AddCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Please enter a name of book category',
-            'name.max' => 'Category name can not exceed 255 words',
-            'name.unique' => 'This category already exists',
+            'name.required' => 'Please enter author\'s name',
+            'name.max' => 'Author\'s name can not exceed 255 words',
+
+            'description.required' => 'Please enter author\'s description',
         ];
     }
 }

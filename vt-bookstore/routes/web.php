@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthorsController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\FacebookAuthController;
@@ -36,11 +37,10 @@ Route::prefix('/auth')->group(function () {
 
     Route::get('/google', [GoogleAuthController::class, 'Redirect'])->name('auth.google');
     Route::get('/google/callback', [GoogleAuthController::class, 'Callback'])->name('auth.google.callback');
-
 });
 
-Route::prefix('/user')->middleware('auth')->group(function(){
-    Route::get('my-account',[UserController::class, 'showUserAccount'])->name('my-account');
+Route::prefix('/user')->middleware('auth')->group(function () {
+    Route::get('my-account', [UserController::class, 'showUserAccount'])->name('my-account');
     Route::view('/my-account/edit', 'user.edit-account')->name('edit-my-account');
     Route::post('/my-account/edit', [UserController::class, 'updateUserInfor'])->name('edit-my-account');
     Route::view('/change-password', 'auth.changePassword')->name('change-password');
@@ -49,16 +49,17 @@ Route::prefix('/user')->middleware('auth')->group(function(){
     Route::get('/address', [UserController::class, 'showAddressView'])->name('user-address');
     Route::post('/address', [UserController::class, 'saveAddress'])->name('user-address');
     Route::post('/address/delete', [UserController::class, 'deleteAddress'])->name('user-delete-address');
-
+    Route::view('/cart', 'cart')->name('cart');
 });
 
-Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function(){
+Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::view('/', 'admin.dashboard')->name('dashboard');
+
     Route::get('/categories', [CategoriesController::class, 'showCategories'])->name('categories');
     Route::post('/categories', [CategoriesController::class, 'saveCategory'])->name('add-category');
     Route::post('/categories/delete', [CategoriesController::class, 'deleteCategory'])->name('delete-category');
-});
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+    Route::get('/authors', [AuthorsController::class, 'showAuthors'])->name('authors');
+    Route::post('/authors', [AuthorsController::class, 'saveAuthor'])->name('authors');
+    Route::post('/authors/delete', [AuthorsController::class, 'deleteAuthor'])->name('delete-authors');
+});

@@ -39,7 +39,7 @@ class CategoriesController extends Controller
         $name = $input['name'];
 
         if ($request->query('id')) {
-            $categoryId = $request->query('id');
+            $categoryId = $input['id'];
             $category = Category::find($categoryId);
             if ($category) {
                 $category->name = $name;

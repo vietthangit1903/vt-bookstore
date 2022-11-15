@@ -37,7 +37,7 @@
                                             <a href="{{ route('admin.categories') }}">Mange Categories</a>
                                         </li>
                                         <li>
-                                            <a href="#">Mange Authors</a>
+                                            <a href="{{ route('admin.authors') }}">Mange Authors</a>
                                         </li>
                                         <li>
                                             <a href="#">Mange Publishers</a>
