@@ -201,14 +201,6 @@
                                     <ul id="categoriesDropdownMenu"
                                         class="dropdown-unfold dropdown-menu font-size-2 rounded-0 border-gray-900"
                                         aria-labelledby="categoriesDropdownInvoker">
-                                        <li><a href="#" class="dropdown-item link-black-100">Children's
-                                                books</a></li>
-                                        <li><a href="#" class="dropdown-item link-black-100">Computers &
-                                                Technology</a></li>
-                                        <li><a href="#" class="dropdown-item link-black-100">Education &
-                                                Teaching</a></li>
-                                        <li><a href="#" class="dropdown-item link-black-100">History</a></li>
-                                        <li><a href="#" class="dropdown-item link-black-100">Travel</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -3733,6 +3725,7 @@
     <script src="{{ url('') }}/assets/js/components/hs.slick-carousel.js"></script>
     <script src="{{ url('') }}/assets/js/components/hs.show-animation.js"></script>
     <script src="{{ url('') }}/assets/js/components/hs.selectpicker.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

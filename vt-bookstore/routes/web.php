@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\FacebookAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\GuestRegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [HomeController::class, 'getView'])->name('home');
+Route::get('/categories', [HomeController::class, 'categoriesList'])->name('categories-list');
+
 
 Route::prefix('/auth')->group(function () {
     Route::get('/login', [LoginController::class, 'ShowLoginForm'])->name('auth.login');
@@ -34,10 +39,10 @@ Route::prefix('/auth')->group(function () {
 
 });
 
-Route::view('/', 'home')->name('home');
-
 Route::prefix('/user')->middleware('auth')->group(function(){
     Route::get('my-account',[UserController::class, 'showUserAccount'])->name('my-account');
+    Route::view('/my-account/edit', 'user.edit-account')->name('edit-my-account');
+    Route::post('/my-account/edit', [UserController::class, 'updateUserInfor'])->name('edit-my-account');
     Route::view('/change-password', 'auth.changePassword')->name('change-password');
     Route::post('/change-password', [ChangePasswordController::class, 'changePassword'])->name('change-password');
 

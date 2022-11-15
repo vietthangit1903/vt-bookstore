@@ -2,7 +2,10 @@
 const preloader = document.querySelector('#preloader')
 window.addEventListener('load', function () {
     preloader.style.display = "none";
-})
+});
+
+insertCategoriesToSideBar();
+
 
 $(document).ready(function () {
     $(document).on('click', '.delete', function (event) {
@@ -11,7 +14,6 @@ $(document).ready(function () {
         // hiển thị Sweetalert2 và xoá bằng ajax 
         showConfirmDelete(event.currentTarget);
     });
-
 });
 
 function showConfirmDelete(e) {
@@ -92,6 +94,33 @@ function reloadList(url, target) {
         Swal.fire(
             'Error!',
             'Can not reload the list, please try again',
+            'error'
+        )
+    });
+}
+
+function insertCategoriesToSideBar() {
+    var sidebar = $('.zeynep.pt-4>ul');
+    var categoriesDropdown = $('#categoriesDropdownMenu');
+    $.ajax({
+        method: "GET",
+        url: '/categories'
+    }).done(function (response) {
+        var sidebarList = response.map((category)=>{
+            return `<li>
+            <a href="#">${category.name}</a>
+        </li>`
+        }).join('');
+        var dropdownList = response.map((category)=>{
+            return `<li><a href="#" class="dropdown-item link-black-100">${category.name}</a></li>`
+        }).join('');
+        sidebar.append(sidebarList);
+        categoriesDropdown.html(dropdownList);
+        console.log(sidebarList);
+    }).fail(function () {
+        Swal.fire(
+            'Error!',
+            'Can not add categories to sidebar, please try again',
             'error'
         )
     });

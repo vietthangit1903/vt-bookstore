@@ -46,7 +46,9 @@
                                             <a href="#">Mange Books</a>
                                         </li>
                                     @else
-                                    
+                                    <li>
+                                        <a href="{{ route('my-account') }}">My Account</a>
+                                    </li>
                                     <li class="has-submenu">
                                         <a href="#" data-submenu="off-shop-pages">Shop Pages</a>
                                         <div id="off-shop-pages" class="submenu js-scrollbar">
@@ -61,9 +63,6 @@
                                                     <a href="./checkout.html">Checkout</a>
                                                 </li>
                                                 <li>
-                                                    <a href="./my-account.html">My Account</a>
-                                                </li>
-                                                <li>
                                                     <a href="./order-received.html">Order Received</a>
                                                 </li>
                                                 <li>
@@ -75,80 +74,7 @@
                                     <li>
                                         <a href="v1.html">Book List</a>
                                     </li>
-                                    <li class="has-submenu">
-                                        <a href="#" data-submenu="art-photo">Arts & Photography</a>
-                                        <div id="art-photo" class="submenu">
-                                            <div class="submenu-header" data-submenu-close="art-photo">
-                                                <a href="#">Arts & Photography</a>
-                                            </div>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Architecture</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Business of Art</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Collections, Catalogs & Exhibitions</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Decorative Arts & Design</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Drawing</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Fashion</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Graphic Design</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="has-submenu">
-                                        <a href="#" data-submenu="children">Children's Books</a>
-                                        <div id="children" class="submenu">
-                                            <div class="submenu-header" data-submenu-close="children">
-                                                <a href="#">Children's Books</a>
-                                            </div>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Fairy tales</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Fables</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Comic</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                        <li>
-                                            <a href="#">Computers & Technology</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Cookbooks, Food & Wine</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Education & Teaching</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Health, Fitness & Dieting</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">History</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Romance</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Sports & Outdoors</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Travel</a>
-                                        </li>
+                                    
                                     @endif
 
                                 </ul>

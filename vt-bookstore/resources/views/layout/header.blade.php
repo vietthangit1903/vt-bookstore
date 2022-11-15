@@ -132,13 +132,6 @@
                             <ul id="categoriesDropdownMenu"
                                 class="dropdown-unfold dropdown-menu rounded-0 border-gray-900"
                                 aria-labelledby="categoriesDropdownInvoker">
-                                <li><a href="#" class="dropdown-item link-black-100">Children's books</a></li>
-                                <li><a href="#" class="dropdown-item link-black-100">Computers & Technology</a>
-                                </li>
-                                <li><a href="#" class="dropdown-item link-black-100">Education & Teaching</a>
-                                </li>
-                                <li><a href="#" class="dropdown-item link-black-100">History</a></li>
-                                <li><a href="#" class="dropdown-item link-black-100">Travel</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

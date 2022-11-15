@@ -150,7 +150,7 @@ Validator.isYear = function (selector, message = 'Wrong year format') {
 
 
 // Kiem tra ngay theo dinh dang yyyy-mm-dd, co kiem tra nam nhuan va so ngay trong thang
-Validator.isDate = function (selector, message = 'Wrong phone date format') {
+Validator.isDate = function (selector, message = 'Wrong date format') {
     return {
         selector: selector,
         test: function (value) {
