@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthorsController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\PublishersController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\FacebookAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
@@ -62,4 +63,8 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(
     Route::get('/authors', [AuthorsController::class, 'showAuthors'])->name('authors');
     Route::post('/authors', [AuthorsController::class, 'saveAuthor'])->name('authors');
     Route::post('/authors/delete', [AuthorsController::class, 'deleteAuthor'])->name('delete-authors');
+
+    Route::get('/publishers', [PublishersController::class, 'showPublishers'])->name('publishers');
+    Route::post('/publishers', [PublishersController::class, 'savePublisher'])->name('publishers');
+    Route::post('/publishers/delete', [PublishersController::class, 'deletePublisher'])->name('delete-publisher');
 });

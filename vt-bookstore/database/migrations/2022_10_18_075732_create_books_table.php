@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->unsignedInteger('pirce');
+            $table->unsignedDecimal('price', $precision = 8, $scale = 2);
             $table->unsignedInteger('stock');
-            $table->date('year');
+            $table->date('publishDate');
             $table->foreignId('author_id')->constrained('authors');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('publisher_id')->constrained('publishers');

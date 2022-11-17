@@ -40,7 +40,7 @@
                                             <a href="{{ route('admin.authors') }}">Mange Authors</a>
                                         </li>
                                         <li>
-                                            <a href="#">Mange Publishers</a>
+                                            <a href="{{ route('admin.publishers') }}">Mange Publishers</a>
                                         </li>
                                         <li>
                                             <a href="#">Mange Books</a>
