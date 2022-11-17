@@ -62,7 +62,7 @@
                         <button type="submit" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">
                             Updates category
                         </button>
-                        <a href="{{url()->previous()}}" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">Cancel</a>
+                        <a href="{{ route('admin.categories') }}" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">Cancel</a>
                     @else
                         <button type="submit" class="btn btn-dark rounded-0 btn-wide py-3 font-weight-medium">
                             Add new category

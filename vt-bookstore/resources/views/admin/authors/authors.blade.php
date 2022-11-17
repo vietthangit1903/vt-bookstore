@@ -65,10 +65,10 @@
                         <div class="form-group mb-4">
                             <label id="authorDescriptionLabel" class="form-label" for="description">Description
                                 <span class="text-red-1">*</span></label>
-                            <textarea class="form-control rounded-0 px-4 @error('desciption') is-invalid @enderror" name="description"
+                            <textarea class="form-control rounded-0 px-4 @error('description') is-invalid @enderror" name="description"
                                 id="description" placeholder="" aria-label="" rows="5" aria-describedby="authorDescriptionLabel">{{ $description ? trim($description) : '' }}</textarea>
-                            <div class="form-message @error('desciption') invalid-feedback @enderror">
-                                @error('desciption')
+                            <div class="form-message @error('description') invalid-feedback @enderror">
+                                @error('description')
                                     {{ $message }}
                                 @enderror
                             </div>
