@@ -186,3 +186,32 @@ Validator.isMarks = function (selector, message = 'Điểm nằm trong khoảng 
         }
     };
 };
+
+Validator.isConcurrency = function (selector, message='Incorrect concurrency format') {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regexDecimal = /^\d*\.?\d*$/;
+            return regexDecimal.test(value) ? undefined : message;
+        }
+    };
+};
+
+Validator.isGreaterThanEqual = function(selector, minValue , message = 'Value must greater than ' + minValue ) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value >= minValue ? undefined : message;
+        }
+    };
+};
+
+Validator.isInteger = function(selector,  message = 'Value must be integer' ) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regexInteger = /^\d+$/;
+            return regexInteger.test(value) ? undefined : message;
+        }
+    };
+};

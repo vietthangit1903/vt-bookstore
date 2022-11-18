@@ -65,7 +65,8 @@ function ajaxDelete(e) {
             setTimeout(() => { window.location.href = redirect_url }, 1500)
         else {
             let reload_url = $(e).data('reload-url');
-            let target = $('.table');
+            let target = $('.custom-table');
+
             reloadList(reload_url, target)
             // setTimeout(() => {}, 1500);
         }
