@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthorsController;
+use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\PublishersController;
 use App\Http\Controllers\Auth\ChangePasswordController;
-use App\Http\Controllers\Auth\FacebookAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\GuestRegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -67,4 +67,8 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(
     Route::get('/publishers', [PublishersController::class, 'showPublishers'])->name('publishers');
     Route::post('/publishers', [PublishersController::class, 'savePublisher'])->name('publishers');
     Route::post('/publishers/delete', [PublishersController::class, 'deletePublisher'])->name('delete-publisher');
+
+    Route::get('/books', [BookController::class, 'showBooks'])->name('books');
+    Route::get('/book/add', [BookController::class, 'showAddBook'])->name('add-book');
+    Route::post('/book/add', [BookController::class, 'addBook'])->name('add-book');
 });

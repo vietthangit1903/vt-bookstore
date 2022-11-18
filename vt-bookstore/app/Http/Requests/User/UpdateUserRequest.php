@@ -44,7 +44,7 @@ class UpdateUserRequest extends FormRequest
             'dob.required' => 'Please enter your date of birth',
             'dob.date' => 'Wrong date format',
 
-            'image.mimes' => 'Your image file extension  must be .jpg, .jpeg or .png',
+            'image.mimes' => 'Your image file extension must be .jpg, .jpeg or .png',
         ];
     }
 }

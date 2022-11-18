@@ -10,6 +10,23 @@ class Book extends Model
 {
     use HasFactory, SoftDeletes;
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 
+        'description',
+        'price',
+        'stock',
+        'publishDate',
+        'author_id',
+        'category_id',
+        'publisher_id',
+    ];
+
     public function author()
     {
         return $this->belongsTo(Author::class);

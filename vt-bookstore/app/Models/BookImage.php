@@ -11,6 +11,16 @@ class BookImage extends Model
 
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'image_path',
+        'book_id', 
+    ];
+
     public function book()
     {
         return $this->belongsTo(Book::class);

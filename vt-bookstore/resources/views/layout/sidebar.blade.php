@@ -43,7 +43,7 @@
                                             <a href="{{ route('admin.publishers') }}">Mange Publishers</a>
                                         </li>
                                         <li>
-                                            <a href="#">Mange Books</a>
+                                            <a href="{{ route('admin.books') }}">Mange Books</a>
                                         </li>
                                     @else
                                     <li>
