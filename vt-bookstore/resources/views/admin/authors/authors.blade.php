@@ -79,7 +79,7 @@
                                 <button type="submit" class="btn py-3 rounded-0 btn-dark w-40 mr-2">
                                     Updates author information
                                 </button>
-                                <a href="{{ route('admin.authors') }}" class="btn py-3 rounded-0 btn-primary w-40">Cancel</a>
+                                <a href="{{ url()->previous() }}" class="btn py-3 rounded-0 btn-primary w-40">Cancel</a>
                             @else
                                 <button type="submit" class="btn py-3 rounded-0 btn-dark w-40 mr-2">
                                     Add new author information

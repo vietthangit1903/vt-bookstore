@@ -1,4 +1,4 @@
-<div class="table">
+<div class="custom-table">
     <table class="shop_table shop_table_responsive cart mb-2">
         <thead>
             <tr>
