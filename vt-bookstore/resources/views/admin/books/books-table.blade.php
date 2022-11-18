@@ -23,7 +23,7 @@
                         <td>{{ $book->id }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="#" class="border-dark">
+                                <a href="{{ route('admin.update-book', ['id'=>$book->id]) }}" class="border-dark">
                                     <img @foreach ($bookImages as $image)
                                         @if ($image->book_id == $book->id)
                                     src="{{asset($image->image_path)}}"
@@ -31,10 +31,10 @@
                                         @endif
                                     @endforeach
                                         class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image "
-                                        alt="" width="90" height="138" style="object-fit: cover">
+                                        alt="Book image" width="90" height="138" style="object-fit: cover">
                                 </a>
                                 <div class="ml-3 m-w-200-lg-down">
-                                    <a href="#">{{ $book->name }}</a>
+                                    <a href="{{ route('admin.update-book', ['id'=>$book->id]) }}">{{ $book->name }}</a>
                                     <a href="{{ route('admin.authors', ['id' => $book->author->id]) }}"
                                         class="text-gray-700 font-size-2 d-block"
                                         tabindex="0">{{ $book->author->name }}</a>
@@ -45,7 +45,7 @@
                         <td>{{ $book->stock }}</td>
                         <td>{{ $book->category->name }}</td>
                         <td>
-                            <a href="#" title="Edit book" class="table-link font-size-5 mr-2"><i
+                            <a href="{{ route('admin.update-book', ['id'=>$book->id]) }}" title="Edit book" class="table-link font-size-5 mr-2"><i
                                     class="fa-solid fa-pen"></i></a>
                             <a href="#" class="table-link font-size-5 delete" data-id="{{ $book->id }}"
                                 data-csrf="{{ csrf_token() }}" data-name="{{ $book->name }}"

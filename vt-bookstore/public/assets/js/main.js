@@ -126,3 +126,28 @@ function insertCategoriesToSideBar() {
         )
     });
 }
+
+function ajaxDeleteImage(e) {
+    var url = $(e).prop('href');
+    var id = $(e).data('id');
+    var csrf = $(e).data('csrf');
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: {
+            id: id,
+            _token: csrf
+        }
+    }).done(function (response) {
+            $(e).parent().remove();
+    }).fail(function (response) { // nếu thất bại
+        Swal.fire(
+            {
+                title: 'Error',
+                html: response.responseJSON.message,
+                icon: 'error',
+                timer: 2000,
+            }
+        )
+    });
+}

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BookRequest extends FormRequest
+class UpdateBookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
+            'id'=>'required',
             'category_id'=>'required',
             'author_id'=>'required',
             'name' => 'required|max: 255',
@@ -32,7 +33,7 @@ class BookRequest extends FormRequest
             'stock' => 'required|integer|gte:0',
             'publisher_id' => 'required',
             'publishDate' => 'required|date',
-            'image'=>'required',
+            'image'=>'nullable',
             'image.*' => 'mimes:jpg,jpeg,png',
         ];
     }
@@ -60,11 +61,8 @@ class BookRequest extends FormRequest
             'publishDate.required' => 'Please enter the published date',
             'publishDate.date' => 'Wrong date format',
 
-            'image.required' => 'Please upload image of the book',
             'image.*.mimes' => 'Your image file extension must be .jpg, .jpeg or .png'
 
         ];
     }
-
-
 }

@@ -71,4 +71,7 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(
     Route::get('/books', [BookController::class, 'showBooks'])->name('books');
     Route::get('/book/add', [BookController::class, 'showAddBook'])->name('add-book');
     Route::post('/book/add', [BookController::class, 'addBook'])->name('add-book');
+    Route::get('/book/update', [BookController::class, 'showAddBook'])->name('update-book');
+    Route::post('/book/update', [BookController::class, 'saveEditBook'])->name('update-book');
+    Route::post('/book/deleteImg', [BookController::class, 'deleteBookImage'])->name('delete-image');
 });
