@@ -215,7 +215,7 @@
                     </div>
 
                     @isset($editBook)
-                        <p class="form-label">Book images</p>
+                        <p class="form-label">Book images: </p>
                         <div class="d-flex flex-wrap">
                             @foreach ($editBook->bookImages as $image)
                                 <div class="mr-3 mb-3 p-2 border border-dark">

@@ -107,15 +107,15 @@ function insertCategoriesToSideBar() {
         method: "GET",
         url: '/categories'
     }).done(function (response) {
-        var sidebarList = response.map((category)=>{
+        var sidebarList = response.map((category) => {
             return `<li>
             <a href="#">${category.name}</a>
         </li>`
         }).join('');
-        var dropdownList = response.map((category)=>{
+        var dropdownList = response.map((category) => {
             return `<li><a href="#" class="dropdown-item link-black-100">${category.name}</a></li>`
         }).join('');
-        if(sidebar)
+        if (sidebar)
             sidebar.append(sidebarList);
         categoriesDropdown.html(dropdownList);
         // console.log(sidebarList);
@@ -140,7 +140,8 @@ function ajaxDeleteImage(e) {
             _token: csrf
         }
     }).done(function (response) {
-            $(e).parent().remove();
+        toastr.info('This image has been successfully deleted');
+        $(e).parent().remove();
     }).fail(function (response) { // nếu thất bại
         Swal.fire(
             {

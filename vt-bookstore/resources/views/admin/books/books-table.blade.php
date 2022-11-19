@@ -23,14 +23,17 @@
                         <td>{{ $book->id }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('admin.update-book', ['id'=>$book->id]) }}" class="border-dark">
-                                    <img 
-                                    src="{{asset($book->bookImages[0]->image_path)}}"
-                                        class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image "
-                                        alt="Book image" width="90" height="138" style="object-fit: cover">
+                                <a href="{{ route('admin.update-book', ['id' => $book->id]) }}" class="border-dark">
+                                    @isset($book->bookImages[0])
+                                        <img src="{{ asset($book->bookImages[0]->image_path) }}"
+                                            class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image "
+                                            alt="Book image" width="90" height="138" style="object-fit: cover">
+                                    @endisset
+
                                 </a>
                                 <div class="ml-3 m-w-200-lg-down">
-                                    <a href="{{ route('admin.update-book', ['id'=>$book->id]) }}">{{ $book->name }}</a>
+                                    <a
+                                        href="{{ route('admin.update-book', ['id' => $book->id]) }}">{{ $book->name }}</a>
                                     <a href="{{ route('admin.authors', ['id' => $book->author->id]) }}"
                                         class="text-gray-700 font-size-2 d-block"
                                         tabindex="0">{{ $book->author->name }}</a>
@@ -41,12 +44,12 @@
                         <td>{{ $book->stock }}</td>
                         <td>{{ $book->category->name }}</td>
                         <td>
-                            <a href="{{ route('admin.update-book', ['id'=>$book->id]) }}" title="Edit book" class="table-link font-size-5 mr-2"><i
-                                    class="fa-solid fa-pen"></i></a>
-                            <a href="#" class="table-link font-size-5 delete" data-id="{{ $book->id }}"
-                                data-csrf="{{ csrf_token() }}" data-name="{{ $book->name }}"
-                                data-reload-url="{{ url()->current() }}" title="Delete book"><i
-                                    class="fa-solid fa-xmark"></i></a>
+                            <a href="{{ route('admin.update-book', ['id' => $book->id]) }}" title="Edit book"
+                                class="table-link font-size-5 mr-2"><i class="fa-solid fa-pen"></i></a>
+                            <a href="{{ route('admin.delete-book') }}" class="table-link font-size-5 delete"
+                                data-id="{{ $book->id }}" data-csrf="{{ csrf_token() }}"
+                                data-name="{{ $book->name }}" data-reload-url="{{ url()->current() }}"
+                                title="Delete book"><i class="fa-solid fa-xmark"></i></a>
                         </td>
                     </tr>
                 @endforeach

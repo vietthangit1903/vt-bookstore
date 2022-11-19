@@ -12,7 +12,7 @@ class CategoriesController extends Controller
 {
     public function showCategories(Request $request)
     {
-        $categories = Category::paginate(10);
+        $categories = Category::paginate(5);
         if (request()->ajax()) {
             $html = view('admin.categories.categories-table', ['paginator' => $categories])->render();
             return response()->json(['data' => $html]);

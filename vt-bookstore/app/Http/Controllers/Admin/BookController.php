@@ -76,7 +76,7 @@ class BookController extends Controller
             $uploadPath = 'books/' . $book->id;
             foreach ($request->file('image') as $imageFile) {
                 $imagePath = $imageFile->store($uploadPath);
-                $book->book_imgages()->create([
+                $book->bookImages()->create([
                     'image_path' => $imagePath,
                     'book_id' => $book->id,
                 ]);
@@ -107,7 +107,7 @@ class BookController extends Controller
             $uploadPath = 'books/' . $editBook->id;
             foreach ($request->file('image') as $imageFile) {
                 $imagePath = $imageFile->store($uploadPath);
-                $editBook->book_imgages()->create([
+                $editBook->bookImages()->create([
                     'image_path' => $imagePath,
                     'book_id' => $editBook->id,
                 ]);
@@ -142,6 +142,39 @@ class BookController extends Controller
         return response()->json(
             [
                 'message' => 'Image is not exist',
+            ],
+            Response::HTTP_NOT_FOUND
+        );
+    }
+
+    public function deleteBook(Request $request){
+        $bookId = $request->input('id');
+        $book = Book::find($bookId);
+        if($book){
+            if ($book->delete()) {
+                foreach ($book->bookImages as $image) {
+                    if ($image->delete()) {
+                        Storage::delete($image->image_path);
+                    }
+                }
+                return response()->json(
+                    [
+                        'message' => $book->name . ' book has been deleted successfully.'
+                    ],
+                    Response::HTTP_OK
+                );  
+            } else {
+                return response()->json(
+                    [
+                        'message' => 'An error occurred, the book cannot be deleted'
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+        }
+        return response()->json(
+            [
+                'message' => 'Book is not exist',
             ],
             Response::HTTP_NOT_FOUND
         );
