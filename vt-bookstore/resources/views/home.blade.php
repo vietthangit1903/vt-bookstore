@@ -486,7 +486,7 @@
                     </li>
                 </ul>
             </header>
-            <div class="tab-content u-slick__tab" id="featuredBooksContent">
+            <div class="tab-content u-slick__tab space-bottom-2 border-bottom" id="featuredBooksContent">
                 <div class="tab-pane fade show active" id="featured" role="tabpanel"
                     aria-labelledby="featured-tab">
                     <div class="js-slick-carousel products list-unstyled no-gutters my-0"
@@ -511,31 +511,27 @@
                              "slidesToShow": 2
                            }
                         }]'>
-                        <div class="product product__no-border border-right">
+                        @foreach ($books as $book)
+                            <div class="product product__no-border border-right">
                             <div class="product__inner overflow-hidden px-3 px-md-4d875">
                                 <div
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                     <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img1.jpg"
+                                        <a href="#" class="d-block"><img
+                                                src="{{asset($book->bookImages[0]->image_path)}}"
                                                 class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
+                                                alt="image-description" height="180" width="120" style="width: 120px; height: 180px; object-fit: contain"></a>
                                     </div>
                                     <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Paperback</a></div>
                                         <h2
                                             class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">Think Like a Monk: Train Your Mind for
-                                                Peace and Purpose
-                                                Everyday</a>
+                                            <a href="#">{{$book->name}}</a>
                                         </h2>
                                         <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Jay
-                                                Shetty</a></div>
+                                                href="#" class="text-gray-700">{{$book->author->name}}</a></div>
                                         <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                             <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
+                                                    class="woocommerce-Price-currencySymbol">$</span>{{$book->price}}</span>
                                         </div>
 
                                     </div>
@@ -547,334 +543,20 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img2.jpg"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Kindle
-                                                Edition</a></div>
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">The Overdue Life of Amy Byler</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Kelly
-                                                Harms</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img3.jpg"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Paperback</a></div>
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">Call Me By Your Name</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Jay
-                                                Shetty</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img4.jpg"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Kindle
-                                                Edition</a></div>
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">Blindside (Michael Bennett)</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Kelly
-                                                Harms</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img5.jpg"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Paperback</a></div>
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">Jesus: The God Who Knows Your Name</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Jay
-                                                Shetty</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img6.jpg"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Kindle
-                                                Edition</a></div>
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">Scot Under the Covers: The Wild
-                                                Wicked...</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Kelly
-                                                Harms</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img7.jpg"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Paperback</a></div>
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">Camino Winds</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Jay
-                                                Shetty</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="./single-product-v2.html" class="d-block"><img
-                                                src="{{ url('') }}/assets/img/120x180/img8.jpg"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <div class="text-uppercase font-size-1 mb-1 text-truncate"><a
-                                                href="./single-product-v2.html">Kindle
-                                                Edition</a></div>
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="./single-product-v2.html">Broken Faith: Inside the Word of
-                                                Faith...</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="../others/authors-single.html" class="text-gray-700">Kelly
-                                                Harms</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>29</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                        
+                        
                     </div>
                 </div>
                 <div class="tab-pane fade" id="onsale" role="tabpanel" aria-labelledby="onsale-tab">
@@ -936,12 +618,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -981,12 +663,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1026,12 +708,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1071,12 +753,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1116,12 +798,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1162,12 +844,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1207,12 +889,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1253,12 +935,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1325,12 +1007,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1370,12 +1052,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1415,12 +1097,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1460,12 +1142,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1505,12 +1187,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1551,12 +1233,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1596,12 +1278,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1642,12 +1324,12 @@
                                                     class="fa-solid fa-bag-shopping"></i></span>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-switch"></i>
+                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-solid fa-repeat"></i>
                                         </a>
                                         <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-green border-0">
-                                            <i class="flaticon-heart"></i>
+                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                            <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1658,7 +1340,7 @@
             </div>
         </div>
     </section>
-    <section class="space-bottom-3">
+    {{-- <section class="space-bottom-3">
         <div class="space-1">
             <div class="container">
                 <header class="border-bottom mb-8d75 pb-4">
@@ -1984,7 +1666,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <section class="space-bottom-3">
         <div class="container">
             <div class="row align-items-center">
@@ -2061,12 +1743,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2107,12 +1789,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2154,12 +1836,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2200,12 +1882,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2249,12 +1931,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2295,12 +1977,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2342,12 +2024,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2388,12 +2070,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2481,12 +2163,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2527,12 +2209,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2574,12 +2256,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2620,12 +2302,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2669,12 +2351,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2715,12 +2397,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2762,12 +2444,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2808,12 +2490,12 @@
                                                         class="fa-solid fa-bag-shopping"></i></span>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-switch"></i>
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
                                             </a>
                                             <a href="./single-product-v2.html"
-                                                class="h-p-bg btn btn-outline-primary-green border-0">
-                                                <i class="flaticon-heart"></i>
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -2832,8 +2514,8 @@
                     <div class="media-body align-self-center mb-4 mb-lg-0">
                         <p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold">Available Once a
                             Year</p>
-                        <h2 class="banner__title font-size-10 font-weight-bold text-white mb-4">Get 50% off on orders
-                            over $139</h2>
+                        <h2 class="banner__title font-size-10 font-weight-bold text-white mb-4">(Black Friday) Get 50% off <br> on orders
+                            over $100</h2>
                         <a href="./v2.html" class="banner_btn btn btn-wide btn-primary-blue text-white">Explore
                             Books</a>
                     </div>
@@ -2903,12 +2585,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -2947,12 +2629,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -2993,12 +2675,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -3037,12 +2719,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -3081,12 +2763,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -3125,12 +2807,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -3171,12 +2853,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -3215,12 +2897,12 @@
                                             class="fa-solid fa-bag-shopping"></i></span>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="mr-1 h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-switch"></i>
+                                    class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-solid fa-repeat"></i>
                                 </a>
                                 <a href="./single-product-v2.html"
-                                    class="h-p-bg btn btn-outline-primary-green border-0">
-                                    <i class="flaticon-heart"></i>
+                                    class="h-p-bg btn btn-outline-primary-blue border-0">
+                                    <i class="fa-regular fa-heart"></i>
                                 </a>
                             </div>
                         </div>
@@ -3229,7 +2911,7 @@
             </div>
         </div>
     </section>
-    <section class="space-bottom-3">
+    <section class="space-bottom-2">
         <div class="container">
             <header class="border-bottom d-md-flex justify-content-between align-items-center mb-8 pb-4d75">
                 <h2 class="font-size-7 mb-3 mb-md-0">Biographies Book</h2>
@@ -3367,7 +3049,7 @@
             </div>
         </div>
     </section>
-    <section class="home-latest-news space-bottom-3">
+    {{-- <section class="home-latest-news space-bottom-3">
         <div class="container">
             <header class="border-bottom d-md-flex justify-content-between align-items-center mb-10d75 pb-4d75">
                 <h2 class="font-size-7 mb-3 mb-md-0">Latest News</h2>
@@ -3432,7 +3114,7 @@
                 </li>
             </ul>
         </div>
-    </section>
+    </section> --}}
     <div class="site-features border-top space-1d625">
         <div class="container">
             <ul
