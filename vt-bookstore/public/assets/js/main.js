@@ -101,7 +101,7 @@ function reloadList(url, target) {
 }
 
 function insertCategoriesToSideBar() {
-    var sidebar = $('.zeynep.pt-4>ul');
+    var sidebar = $('ul.book-categories');
     var categoriesDropdown = $('#categoriesDropdownMenu');
     $.ajax({
         method: "GET",
@@ -115,7 +115,8 @@ function insertCategoriesToSideBar() {
         var dropdownList = response.map((category)=>{
             return `<li><a href="#" class="dropdown-item link-black-100">${category.name}</a></li>`
         }).join('');
-        sidebar.append(sidebarList);
+        if(sidebar)
+            sidebar.append(sidebarList);
         categoriesDropdown.html(dropdownList);
         // console.log(sidebarList);
     }).fail(function () {

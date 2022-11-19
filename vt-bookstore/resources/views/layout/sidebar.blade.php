@@ -75,6 +75,17 @@
                                         <a href="v1.html">Book List</a>
                                     </li>
                                     
+                                    <li class="has-submenu">
+                                        <a href="#" data-submenu="book-categories">Book Categories</a>
+                                        <div id="book-categories" class="submenu js-scrollbar">
+                                            <div class="submenu-header" data-submenu-close="book-categories">
+                                                <a href="#">Book Categories</a>
+                                            </div>
+                                            <ul class="book-categories">
+                                                
+                                            </ul>
+                                        </div>
+                                    </li>
                                     @endif
 
                                 </ul>

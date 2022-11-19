@@ -59,7 +59,8 @@
                     @endisset
                     <div class="form-group mb-2">
                         <label for="category">Category <span class="text-red-1">*</span></label>
-                        <select class="form-control" name="category_id" id="category">
+                        <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
+                            <option value="" selected>--</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
                                     @if (old('category_id') && old('category_id') == $category->id) selected
@@ -70,11 +71,17 @@
                                     {{ $category->name }}</option>
                             @endforeach
                         </select>
+                        <div class="form-message @error('category_id') invalid-feedback @enderror">
+                            @error('category_id')
+                                {{ $message }}
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-group mb-2">
                         <label for="author">Author <span class="text-red-1">*</span></label>
-                        <select class="form-control" name="author_id" id="author">
+                        <select class="form-control @error('author_id') is-invalid @enderror" name="author_id" id="author_id">
+                            <option value="" selected>--</option>
                             @foreach ($authors as $author)
                                 <option value="{{ $author->id }}"
                                     @if (old('author_id') && old('author_id') == $author->id) selected
@@ -85,6 +92,11 @@
                                     {{ $author->name }}</option>
                             @endforeach
                         </select>
+                        <div class="form-message @error('author_id') invalid-feedback @enderror">
+                            @error('author_id')
+                                {{ $message }}
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-group mb-2">
@@ -165,7 +177,8 @@
 
                     <div class="form-group mb-2">
                         <label for="publisher">Publisher <span class="text-red-1">*</span></label>
-                        <select class="form-control" name="publisher_id" id="publisher">
+                        <select class="form-control @error('publisher_id') is-invalid @enderror" name="publisher_id" id="publisher_id">
+                            <option value="" selected>--</option>
                             @foreach ($publishers as $publisher)
                                 <option value="{{ $publisher->id }}"
                                     @if (old('publisher_id') && old('publisher_id') == $publisher->id) selected
@@ -176,6 +189,11 @@
                                     {{ $publisher->name }}</option>
                             @endforeach
                         </select>
+                        <div class="form-message @error('publisher_id') invalid-feedback @enderror">
+                            @error('publisher_id')
+                                {{ $message }}
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-group mb-2">
@@ -199,7 +217,7 @@
                     @isset($editBook)
                         <p class="form-label">Book images</p>
                         <div class="d-flex flex-wrap">
-                            @foreach ($bookImages as $image)
+                            @foreach ($editBook->bookImages as $image)
                                 <div class="mr-3 mb-3 p-2 border border-dark">
                                     <img src="{{ asset($image->image_path) }}"
                                         class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="Book image"
@@ -266,6 +284,8 @@
             form: '#addBook',
             errorSelector: '.form-message',
             rules: [
+                Validator.isRequired('#category_id', 'Please choose a category'),
+                Validator.isRequired('#author_id', 'Please choose an author'),
                 Validator.isRequired('#name', 'Please enter book name'),
                 Validator.isRequired('#description', 'Please enter book description'),
                 Validator.isRequired('#price', 'Please enter book price'),
@@ -273,6 +293,7 @@
                 Validator.isRequired('#stock', 'Please enter stock of book'),
                 Validator.isInteger('#stock', 'Number of book must be interger and greater than zero'),
                 // Validator.isGreaterThanEqual('#stock', 0, 'The number of books cannot be negative'),
+                Validator.isRequired('#publisher_id', 'Please choose a publisher'),
                 Validator.isRequired('#publishDate', 'Please enter publish date of book'),
                 Validator.isDate('#publishDate', 'Wrong date format'),
 

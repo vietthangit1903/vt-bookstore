@@ -42,7 +42,7 @@ class Book extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    public function book_imgages()
+    public function bookImages()
     {
         return $this->hasMany(BookImage::class);
     }

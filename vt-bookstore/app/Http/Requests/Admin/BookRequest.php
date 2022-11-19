@@ -45,6 +45,8 @@ class BookRequest extends FormRequest
     public function messages()
     {
         return [
+            'category_id.required' => 'Please choose a category',
+            'author_id.required' => 'Please choose an author',
             'name.required' => 'Please enter book\'s name',
             'name.max' => 'Book\'s name can not exceed 255 characters',
 
@@ -56,6 +58,8 @@ class BookRequest extends FormRequest
             'stock.required' => 'Please enter the number of book',
             'stock.integer' => 'Number of book must be integer',
             'stock.gte' => 'The number of books cannot be negative',
+
+            'publisher_id.required' => 'Please choose a publisher',
 
             'publishDate.required' => 'Please enter the published date',
             'publishDate.date' => 'Wrong date format',

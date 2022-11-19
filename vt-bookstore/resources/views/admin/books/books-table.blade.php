@@ -24,12 +24,8 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('admin.update-book', ['id'=>$book->id]) }}" class="border-dark">
-                                    <img @foreach ($bookImages as $image)
-                                        @if ($image->book_id == $book->id)
-                                    src="{{asset($image->image_path)}}"
-                                        
-                                        @endif
-                                    @endforeach
+                                    <img 
+                                    src="{{asset($book->bookImages[0]->image_path)}}"
                                         class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image "
                                         alt="Book image" width="90" height="138" style="object-fit: cover">
                                 </a>

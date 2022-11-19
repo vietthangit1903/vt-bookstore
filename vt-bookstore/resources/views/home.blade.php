@@ -78,18 +78,8 @@
                             class="site-search ml-xl-0 ml-md-auto w-r-100 flex-grow-1 mr-md-5 mt-2 mt-md-0 order-1 order-md-0">
                             <form class="form-inline my-2 my-xl-0">
                                 <div class="input-group input-group-borderless w-100">
-                                    <div class="input-group-prepend mr-0 d-none d-xl-block">
-                                        <select
-                                            class="custom-select pr-7 pl-4 rounded-right-0 height-5 shadow-none border-0 text-dark"
-                                            id="inputGroupSelect01">
-                                            <option selected>All Categories</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
                                     <input type="text"
-                                        class="form-control border-left rounded-left-1 rounded-left-xl-0 px-3"
+                                        class="form-control border-left rounded-left-1 rounded-left-xl-1 px-3"
                                         placeholder="Search for books by keyword"
                                         aria-label="Amount (to the nearest dollar)">
                                     <div class="input-group-append">

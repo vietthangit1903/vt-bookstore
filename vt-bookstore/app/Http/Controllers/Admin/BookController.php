@@ -20,10 +20,8 @@ class BookController extends Controller
     public function showBooks(Request $request)
     {
         $books = Book::paginate(10);
-        $bookImages = BookImage::all();
         $data = [
             'paginator' => $books,
-            'bookImages' => $bookImages,
         ];
         if (request()->ajax()) {
             $html = view('admin.books.books-table', $data)->render();
@@ -45,10 +43,8 @@ class BookController extends Controller
         if ($request->query('id')) {
             $bookId = $request->query('id');
             $book = Book::find($bookId);
-            $bookImages = BookImage::where('book_id', $bookId)->get();
             if ($book) {
                 $data['editBook'] = $book;
-                $data['bookImages'] = $bookImages;
                 return view('admin.books.add-book', $data);
             } else
                 return back()->with('error', 'Book id is incorrect');
