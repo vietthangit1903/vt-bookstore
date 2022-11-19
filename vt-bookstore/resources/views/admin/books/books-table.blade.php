@@ -27,7 +27,7 @@
                                     @isset($book->bookImages[0])
                                         <img src="{{ asset($book->bookImages[0]->image_path) }}"
                                             class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image "
-                                            alt="Book image" width="90" height="138" style="object-fit: cover">
+                                            alt="Book image" width="90" height="138" style="object-fit: contain">
                                     @endisset
 
                                 </a>

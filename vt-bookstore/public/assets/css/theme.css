@@ -102,7 +102,8 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(0deg, rgba(10, 161, 221, 1) 0%, rgba(121, 218, 232, 1) 45%, rgba(33, 85, 205, 1) 100%);
+    /* background: linear-gradient(0deg, rgba(10, 161, 221, 1) 0%, rgba(121, 218, 232, 1) 45%, rgba(33, 85, 205, 1) 100%); */
+    background-color: var(--secondary);
     border-radius: 5px;
 }
 
@@ -4688,6 +4689,38 @@ a.btn.disabled, fieldset:disabled a.btn {
 .btn-outline-primary-green:not(:disabled):not(.disabled):active:focus, .btn-outline-primary-green:not(:disabled):not(.disabled).active:focus, .show>.btn-outline-primary-green.dropdown-toggle:focus {
     box-shadow: 0 0 0 .2rem rgba(136, 207, 0, .5)
 }
+
+/* Btn outline blue user define */
+.btn-outline-primary-blue {
+    color: var(--blue);
+    border-color: var(--blue)
+}
+
+.btn-outline-primary-blue:hover {
+    color: var(--secondary);
+    background-color: var(--blue);
+    border-color: var(--blue)
+}
+
+.btn-outline-primary-blue:focus, .btn-outline-primary-blue.focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 90, 207, 0.5)
+}
+
+.btn-outline-primary-blue.disabled, .btn-outline-primary-blue:disabled {
+    color: var(--blue);
+    background-color: transparent
+}
+
+.btn-outline-primary-blue:not(:disabled):not(.disabled):active, .btn-outline-primary-blue:not(:disabled):not(.disabled).active, .show>.btn-outline-primary-blue.dropdown-toggle {
+    color: var(--secondary);
+    background-color: var(--blue);
+    border-color: var(--blue)
+}
+
+.btn-outline-primary-blue:not(:disabled):not(.disabled):active:focus, .btn-outline-primary-blue:not(:disabled):not(.disabled).active:focus, .show>.btn-outline-primary-blue.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(136, 207, 0, .5)
+}
+/* End of btn outline blue user define */
 
 .btn-outline-primary-yellow {
     color: var(--yellow);

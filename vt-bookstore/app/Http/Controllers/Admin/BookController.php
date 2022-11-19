@@ -19,7 +19,7 @@ class BookController extends Controller
 {
     public function showBooks(Request $request)
     {
-        $books = Book::paginate(10);
+        $books = Book::paginate(8);
         $data = [
             'paginator' => $books,
         ];

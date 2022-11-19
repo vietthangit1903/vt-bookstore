@@ -130,14 +130,10 @@
                 onClosed: function() {
                     // enable main wrapper element clicks on any its children element
                     $("body main").attr("style", "");
-
-                    console.log('the side menu is closed.');
                 },
                 onOpened: function() {
                     // disable main wrapper element clicks on any its children element
                     $("body main").attr("style", "pointer-events: none;");
-
-                    console.log('the side menu is opened.');
                 }
             });
 

@@ -1,17 +1,17 @@
 @extends('layout.master')
 
 @section('title')
-    Manage Book Publishers
+    Manage Publishers
 @endsection
 
 @section('breadcrumb')
     <div class="page-header border-bottom">
         <div class="container">
             <div class="d-md-flex justify-content-between align-items-center py-4">
-                <h1 class="page-title font-size-3 font-weight-medium m-0 text-lh-lg">Manage Book Publishers</h1>
+                <h1 class="page-title font-size-3 font-weight-medium m-0 text-lh-lg">Manage Publishers</h1>
                 <nav class="woocommerce-breadcrumb font-size-2">
                     <a href="{{ route('admin.dashboard') }}" class="h-primary">Admin dashboard</a>
-                    <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>Manage Book Publishers
+                    <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>Manage Publishers
                 </nav>
             </div>
         </div>
@@ -22,7 +22,7 @@
     <main id="content">
         <div class="container col-lg-8 col-md-8 col-sm-12 my-5">
             <div class="text-center mb-5">
-                <h5 class="font-size-7 font-weight-medium">Manage Book Publishers</h5>
+                <h5 class="font-size-7 font-weight-medium">Manage Publishers</h5>
 
             </div>
             <form class="form-row justify-content-center mb-3" id="publishers" method="POST"

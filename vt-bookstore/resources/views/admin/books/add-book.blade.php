@@ -221,7 +221,7 @@
                                 <div class="mr-3 mb-3 p-2 border border-dark">
                                     <img src="{{ asset($image->image_path) }}"
                                         class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="Book image"
-                                        width="90" height="138" style="object-fit: cover">
+                                        width="90" height="138" style="object-fit: contain">
                                     <a href="{{ route('admin.delete-image') }}"
                                         class="btn py-2 rounded-0 btn-dark removeImage " data-id="{{ $image->id }}"
                                         data-csrf="{{ csrf_token() }}" title="Delete image">
