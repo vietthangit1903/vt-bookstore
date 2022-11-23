@@ -72,7 +72,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="v1.html">Book List</a>
+                                        <a href="{{ route('book-list') }}">Book List</a>
                                     </li>
                                     
                                     <li class="has-submenu">

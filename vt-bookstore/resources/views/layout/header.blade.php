@@ -152,7 +152,7 @@
                             </a>
                             <ul id="shopDropdownMenu" class="dropdown-unfold dropdown-menu rounded-0 border-gray-900"
                                 aria-labelledby="shopDropdownInvoker">
-                                <li><a href="./v1.html" class="dropdown-item link-black-100">Book List </a></li>
+                                <li><a href="{{ route('book-list') }}" class="dropdown-item link-black-100">Book List </a></li>
                                 <li><a href="{{ route('cart') }}" class="dropdown-item link-black-100">Book cart</a>
                                 </li>
                                 <li><a href="./checkout.html" class="dropdown-item link-black-100">Book checkout</a>

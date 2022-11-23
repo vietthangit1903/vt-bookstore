@@ -103,6 +103,7 @@ function reloadList(url, target) {
 function insertCategoriesToSideBar() {
     var sidebar = $('ul.book-categories');
     var categoriesDropdown = $('#categoriesDropdownMenu');
+    var bookListCategories = $('#product-categories');
     $.ajax({
         method: "GET",
         url: '/categories'
@@ -115,8 +116,13 @@ function insertCategoriesToSideBar() {
         var dropdownList = response.map((category) => {
             return `<li><a href="#" class="dropdown-item link-black-100">${category.name}</a></li>`
         }).join('');
+        var bookCategoriesList = response.map((category) => {
+            return `<li class="cat-item cat-item-9 cat-parent"><a href="#">${category.name}</a></li>`
+        }).join('');
         if (sidebar)
             sidebar.append(sidebarList);
+        if(bookListCategories)
+            bookListCategories.append(bookCategoriesList);
         categoriesDropdown.html(dropdownList);
         // console.log(sidebarList);
     }).fail(function () {

@@ -29,6 +29,7 @@
 <body @class([
     'right-sidebar' => route('cart') === url()->current(),
     'woocommerce-cart' => route('cart') === url()->current(),
+    'left-sidebar' => route('book-list') === url()->current(),
 ])>
 
     <div id="preloader">
@@ -47,7 +48,6 @@
     @include('layout.header')
 
     @include('layout.cart')
-
 
     @include('layout.sidebar')
 
