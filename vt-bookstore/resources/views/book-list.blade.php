@@ -26,6 +26,12 @@
         <div class="container">
             <div class="row">
                 <div id="primary" class="content-area order-2">
+                    @isset($keyword)
+                        <h3>Result of search: <strong>{{$keyword}}</strong></h3>
+                    @endisset
+                    @isset($category)
+                        <h3>Category: <strong>{{$category->name}}</strong></h3>
+                    @endisset
                     <div
                         class="shop-control-bar d-lg-flex justify-content-between align-items-center mb-5 text-center text-md-left">
                         <div class="shop-control-bar__left mb-4 m-lg-0">

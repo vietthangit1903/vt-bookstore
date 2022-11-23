@@ -76,15 +76,18 @@
                         </div>
                         <div
                             class="site-search ml-xl-0 ml-md-auto w-r-100 flex-grow-1 mr-md-5 mt-2 mt-md-0 order-1 order-md-0">
-                            <form class="form-inline my-2 my-xl-0">
-                                <div class="input-group input-group-borderless w-100">
-                                    <input type="text"
+                            <form class="form-inline my-2 my-xl-0" method="GET" action="{{ route('search-book') }}">
+                                <div class="input-group input-group-borderless w-100" id="search-home">
+                                    <input type="text" name="keyword" id="search-input"
                                         class="form-control border-left rounded-left-1 rounded-left-xl-1 px-3"
                                         placeholder="Search for books by keyword"
                                         aria-label="Amount (to the nearest dollar)">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary-blue px-3 py-2" type="submit"><i
+                                        <button class="btn btn-primary-blue px-3 py-2 rounded-right-1 rounded-right-xl-1" type="submit"><i
                                                 class="fa-solid fa-magnifying-glass mx-1 text-white"></i></button>
+                                    </div>
+                                    <div class="bg-white search-list-container rounded-bottom">
+
                                     </div>
                                 </div>
                             </form>
@@ -118,11 +121,11 @@
                                         <li style="text-align: center" class="mb-2">
                                             <a href="{{ route('my-account') }}" title="My account">
                                                 <img src="{{ asset(Auth::user()->image) }}"
-                                                style="object-fit: cover; border: 2px solid var(--primary);"
-                                                alt="Profile image" width="48" height="48"
-                                                class="rounded-circle ">
+                                                    style="object-fit: cover; border: 2px solid var(--primary);"
+                                                    alt="Profile image" width="48" height="48"
+                                                    class="rounded-circle ">
                                             </a>
-                                            
+
                                         </li>
                                         <li><a href="{{ route('my-account') }}" class="dropdown-item link-black-100">My
                                                 account</a></li>
@@ -215,7 +218,8 @@
                                     <ul id="shopDropdownMenu"
                                         class="dropdown-unfold dropdown-menu font-size-2 rounded-0 border-gray-900"
                                         aria-labelledby="shopDropdownInvoker">
-                                        <li><a href="{{ route('book-list') }}" class="dropdown-item link-black-100">Book List </a>
+                                        <li><a href="{{ route('book-list') }}"
+                                                class="dropdown-item link-black-100">Book List </a>
                                         </li>
                                         <li><a href="{{ route('cart') }}" class="dropdown-item link-black-100">Book
                                                 cart</a>
@@ -513,50 +517,52 @@
                         }]'>
                         @foreach ($books as $book)
                             <div class="product product__no-border border-right">
-                            <div class="product__inner overflow-hidden px-3 px-md-4d875">
-                                <div
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                    <div class="woocommerce-loop-product__thumbnail">
-                                        <a href="#" class="d-block"><img
-                                                src="{{asset($book->bookImages[0]->image_path)}}"
-                                                class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                alt="image-description" height="180" width="120" style="width: 120px; height: 180px; object-fit: contain"></a>
-                                    </div>
-                                    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                        <h2
-                                            class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                            <a href="#">{{$book->name}}</a>
-                                        </h2>
-                                        <div class="font-size-2  mb-1 text-truncate"><a
-                                                href="#" class="text-gray-700">{{$book->author->name}}</a></div>
-                                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                            <span class="woocommerce-Price-amount amount"><span
-                                                    class="woocommerce-Price-currencySymbol">$</span>{{$book->price}}</span>
+                                <div class="product__inner overflow-hidden px-3 px-md-4d875">
+                                    <div
+                                        class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
+                                        <div class="woocommerce-loop-product__thumbnail">
+                                            <a href="#" class="d-block"><img
+                                                    src="{{ asset($book->bookImages[0]->image_path) }}"
+                                                    class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
+                                                    alt="image-description" height="180" width="120"
+                                                    style="width: 120px; height: 180px; object-fit: contain"></a>
                                         </div>
+                                        <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                            <h2
+                                                class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
+                                                <a href="#">{{ $book->name }}</a>
+                                            </h2>
+                                            <div class="font-size-2  mb-1 text-truncate"><a href="#"
+                                                    class="text-gray-700">{{ $book->author->name }}</a></div>
+                                            <div
+                                                class="price d-flex align-items-center font-weight-medium font-size-3">
+                                                <span class="woocommerce-Price-amount amount"><span
+                                                        class="woocommerce-Price-currencySymbol">$</span>{{ $book->price }}</span>
+                                            </div>
 
-                                    </div>
-                                    <div class="product__hover d-flex align-items-center">
-                                        <a href="./single-product-v2.html"
-                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                            <span class="product__add-to-cart">ADD TO CART</span>
-                                            <span class="product__add-to-cart-icon font-size-4"><i
-                                                    class="fa-solid fa-bag-shopping"></i></span>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
-                                            <i class="fa-solid fa-repeat"></i>
-                                        </a>
-                                        <a href="./single-product-v2.html"
-                                            class="h-p-bg btn btn-outline-primary-blue border-0">
-                                            <i class="fa-regular fa-heart"></i>
-                                        </a>
+                                        </div>
+                                        <div class="product__hover d-flex align-items-center">
+                                            <a href="./single-product-v2.html"
+                                                class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
+                                                <span class="product__add-to-cart">ADD TO CART</span>
+                                                <span class="product__add-to-cart-icon font-size-4"><i
+                                                        class="fa-solid fa-bag-shopping"></i></span>
+                                            </a>
+                                            <a href="./single-product-v2.html"
+                                                class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-solid fa-repeat"></i>
+                                            </a>
+                                            <a href="./single-product-v2.html"
+                                                class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
-                        
-                        
+
+
                     </div>
                 </div>
                 <div class="tab-pane fade" id="onsale" role="tabpanel" aria-labelledby="onsale-tab">
@@ -1676,8 +1682,8 @@
                         <div class="p-5">
                             <h4 class="font-size-22">Romance</h4>
                             <p>Lorem ipsum dolor consectetu eiusmo tempor ametsum.</p>
-                            <a href="#"
-                                class="text-dark font-weight-medium text-uppercase stretched-link">View All</a>
+                            <a href="#" class="text-dark font-weight-medium text-uppercase stretched-link">View
+                                All</a>
                         </div>
                     </div>
                 </div>
@@ -2514,7 +2520,8 @@
                     <div class="media-body align-self-center mb-4 mb-lg-0">
                         <p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold">Available Once a
                             Year</p>
-                        <h2 class="banner__title font-size-10 font-weight-bold text-white mb-4">(Black Friday) Get 50% off <br> on orders
+                        <h2 class="banner__title font-size-10 font-weight-bold text-white mb-4">(Black Friday) Get 50%
+                            off <br> on orders
                             over $100</h2>
                         <a href="./v2.html" class="banner_btn btn btn-wide btn-primary-blue text-white">Explore
                             Books</a>
@@ -3458,6 +3465,28 @@
         });
     </script>
     <script src="{{ url('') }}/assets/js/main.js"></script>
+    <script>
+        var searchHome = $('#search-home');
+        var searchList = $('.search-list-container');
+        if (searchHome) {
+            $('#search-input').on('input', function(e) {
+                console.log($('#search-input').val());
+                if ($('#search-input').val() != "") {
+                    $.ajax({
+                        method: "GET",
+                        url: "{{ route('search-book') }}",
+                        data: {
+                            keyword: $('#search-input').val(),
+                        }
+                    }).done(function(response) {
+                        searchList.html(response.data);
+                    });
+                } else
+                    searchList.html("");
+
+            });
+        }
+    </script>
     @include('layout.notification')
     @yield('custom_js')
 </body>

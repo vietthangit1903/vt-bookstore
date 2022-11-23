@@ -1,10 +1,10 @@
+insertCategoriesToSideBar();
 // Preloader
 const preloader = document.querySelector('#preloader')
 window.addEventListener('load', function () {
     preloader.style.display = "none";
 });
 
-insertCategoriesToSideBar();
 
 
 $(document).ready(function () {
@@ -110,18 +110,18 @@ function insertCategoriesToSideBar() {
     }).done(function (response) {
         var sidebarList = response.map((category) => {
             return `<li>
-            <a href="#">${category.name}</a>
+            <a href="http://127.0.0.1:8000/book-list/category/${category.id}">${category.name}</a>
         </li>`
         }).join('');
         var dropdownList = response.map((category) => {
-            return `<li><a href="#" class="dropdown-item link-black-100">${category.name}</a></li>`
+            return `<li><a href="http://127.0.0.1:8000/book-list/category/${category.id}" class="dropdown-item link-black-100">${category.name}</a></li>`
         }).join('');
         var bookCategoriesList = response.map((category) => {
-            return `<li class="cat-item cat-item-9 cat-parent"><a href="#">${category.name}</a></li>`
+            return `<li class="cat-item cat-item-9 cat-parent"><a href="http://127.0.0.1:8000/book-list/category/${category.id}">${category.name}</a></li>`
         }).join('');
         if (sidebar)
             sidebar.append(sidebarList);
-        if(bookListCategories)
+        if (bookListCategories)
             bookListCategories.append(bookCategoriesList);
         categoriesDropdown.html(dropdownList);
         // console.log(sidebarList);

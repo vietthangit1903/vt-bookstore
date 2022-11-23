@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'getView'])->name('home');
 Route::get('/categories', [HomeController::class, 'categoriesList'])->name('categories-list');
 Route::get('/book-list', [BookListController::class, 'showBookList'])->name('book-list');
+Route::get('/book-list/search', [BookListController::class, 'search'])->name('search-book');
+Route::get('/book-list/category/{id}', [BookListController::class, 'bookByCategory'])->name('bookByCategory');
 
 
 Route::prefix('/auth')->group(function () {

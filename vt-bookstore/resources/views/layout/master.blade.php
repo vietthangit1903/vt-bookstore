@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="{{ url('') }}/assets/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="{{ url('') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ url('') }}/assets/vendor/slick-carousel/slick/slick.css" />
-    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet"
+        href="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
 
 
     <link rel="stylesheet" href="{{ url('') }}/assets/css/loader.css">
@@ -29,7 +30,10 @@
 <body @class([
     'right-sidebar' => route('cart') === url()->current(),
     'woocommerce-cart' => route('cart') === url()->current(),
-    'left-sidebar' => route('book-list') === url()->current(),
+    'left-sidebar' =>
+        route('book-list') === url()->current() ||
+        route('search-book') === url()->current() ||
+        Str::of(url()->current())->contains('/book-list/category'),
 ])>
 
     <div id="preloader">
@@ -94,7 +98,8 @@
     <script src="{{ url('') }}/assets/vendor/slick-carousel/slick/slick.min.js"></script>
     <script src="{{ url('') }}/assets/vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="{{ url('') }}/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js">
+    </script>
 
     <script src="{{ url('') }}/assets/js/hs.core.js"></script>
     <script src="{{ url('') }}/assets/js/validator.js"></script>
