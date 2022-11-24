@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthorsController;
-use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\BookAdminController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\PublishersController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\GuestRegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookListController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
@@ -29,6 +30,8 @@ Route::get('/categories', [HomeController::class, 'categoriesList'])->name('cate
 Route::get('/book-list', [BookListController::class, 'showBookList'])->name('book-list');
 Route::get('/book-list/search', [BookListController::class, 'search'])->name('search-book');
 Route::get('/book-list/category/{id}', [BookListController::class, 'bookByCategory'])->name('bookByCategory');
+
+Route::get('/book-detail/{book_id}', [BookController::class, 'showBook'])->name('bookDetail');
 
 
 Route::prefix('/auth')->group(function () {
@@ -72,11 +75,11 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(
     Route::post('/publishers', [PublishersController::class, 'savePublisher'])->name('publishers');
     Route::post('/publishers/delete', [PublishersController::class, 'deletePublisher'])->name('delete-publisher');
 
-    Route::get('/books', [BookController::class, 'showBooks'])->name('books');
-    Route::get('/book/add', [BookController::class, 'showAddBook'])->name('add-book');
-    Route::post('/book/add', [BookController::class, 'addBook'])->name('add-book');
-    Route::get('/book/update', [BookController::class, 'showAddBook'])->name('update-book');
-    Route::post('/book/update', [BookController::class, 'saveEditBook'])->name('update-book');
-    Route::post('/book/delete', [BookController::class, 'deleteBook'])->name('delete-book');
-    Route::post('/book/deleteImg', [BookController::class, 'deleteBookImage'])->name('delete-image');
+    Route::get('/books', [BookAdminController::class, 'showBooks'])->name('books');
+    Route::get('/book/add', [BookAdminController::class, 'showAddBook'])->name('add-book');
+    Route::post('/book/add', [BookAdminController::class, 'addBook'])->name('add-book');
+    Route::get('/book/update', [BookAdminController::class, 'showAddBook'])->name('update-book');
+    Route::post('/book/update', [BookAdminController::class, 'saveEditBook'])->name('update-book');
+    Route::post('/book/delete', [BookAdminController::class, 'deleteBook'])->name('delete-book');
+    Route::post('/book/deleteImg', [BookAdminController::class, 'deleteBookImage'])->name('delete-image');
 });

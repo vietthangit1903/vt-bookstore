@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
-class BookController extends Controller
+class BookAdminController extends Controller
 {
     public function showBooks(Request $request)
     {

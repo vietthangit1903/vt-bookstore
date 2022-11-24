@@ -142,7 +142,7 @@
                                             <div
                                                 class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                                 <div class="woocommerce-loop-product__thumbnail">
-                                                    <a href="#" class="d-block"><img
+                                                    <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}" class="d-block"><img
                                                             src="{{ asset($book->bookImages[0]->image_path) }}"
                                                             class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                             alt="image-description"
@@ -151,7 +151,7 @@
                                                 <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
                                                     <h2
                                                         class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                                        <a href="#">{{ $book->name }}</a>
+                                                        <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}">{{ $book->name }}</a>
                                                     </h2>
                                                     <div class="font-size-2  mb-1 text-truncate"><a href="#"
                                                             class="text-gray-700">{{ $book->author->name }}</a></div>
@@ -171,11 +171,13 @@
                                                                 class="flaticon-icon-126515"></i></span>
                                                     </a>
                                                     <a href="#"
-                                                        class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                                        <i class="flaticon-switch"></i>
+                                                        class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                        <i class="fa-solid fa-repeat"></i>
+
                                                     </a>
-                                                    <a href="#" class="h-p-bg btn btn-outline-primary border-0">
-                                                        <i class="flaticon-heart"></i>
+                                                    <a href="#" class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                        <i class="fa-regular fa-heart"></i>
+
                                                     </a>
                                                 </div>
                                             </div>
@@ -197,7 +199,7 @@
                                             <div
                                                 class="woocommerce-LoopProduct-link woocommerce-loop-product__link row position-relative">
                                                 <div class="col-md-auto woocommerce-loop-product__thumbnail mb-3 mb-md-0">
-                                                    <a href="#" class="d-block"><img
+                                                    <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}" class="d-block"><img
                                                             src="{{ asset($book->bookImages[0]->image_path) }}"
                                                             class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                             alt="image-description"
@@ -207,7 +209,7 @@
                                                     class="col-md woocommerce-loop-product__body product__body pt-3 bg-white mb-3 mb-md-0">
                                                     <h2
                                                         class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 crop-text-2 h-dark">
-                                                        <a href="#" tabindex="0">{{ $book->name }}</a>
+                                                        <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}" tabindex="0">{{ $book->name }}</a>
                                                     </h2>
                                                     <div class="font-size-2  mb-2 text-truncate"><a href="#"
                                                             class="text-gray-700">{{ $book->author->name }}</a></div>

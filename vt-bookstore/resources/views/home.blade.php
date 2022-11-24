@@ -521,7 +521,7 @@
                                     <div
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
-                                            <a href="#" class="d-block"><img
+                                            <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}" class="d-block"><img
                                                     src="{{ asset($book->bookImages[0]->image_path) }}"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description" height="180" width="120"
@@ -530,7 +530,7 @@
                                         <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
                                             <h2
                                                 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                                <a href="#">{{ $book->name }}</a>
+                                                <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}">{{ $book->name }}</a>
                                             </h2>
                                             <div class="font-size-2  mb-1 text-truncate"><a href="#"
                                                     class="text-gray-700">{{ $book->author->name }}</a></div>
