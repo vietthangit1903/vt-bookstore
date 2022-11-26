@@ -83,7 +83,9 @@
                                         placeholder="Search for books by keyword"
                                         aria-label="Amount (to the nearest dollar)">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary-blue px-3 py-2 rounded-right-1 rounded-right-xl-1" type="submit"><i
+                                        <button
+                                            class="btn btn-primary-blue px-3 py-2 rounded-right-1 rounded-right-xl-1"
+                                            type="submit"><i
                                                 class="fa-solid fa-magnifying-glass mx-1 text-white"></i></button>
                                     </div>
                                     <div class="bg-white search-list-container rounded-bottom">
@@ -165,13 +167,23 @@
                                 data-unfold-duration="500">
                                 <div
                                     class="d-flex align-items-center text-white font-size-2 text-lh-sm position-relative">
-                                    <span
-                                        class="position-absolute bg-red-1 width-16 height-16 rounded-circle d-flex align-items-center justify-content-center text-white font-size-n9 left-0 top-0 ml-n2 mt-n1">3</span>
-                                    <i class="fa-solid fa-bag-shopping font-size-5"></i>
-                                    <div class="ml-2">
-                                        <span class="text-white font-size-1">My Cart</span>
-                                        <div class="">$40.93</div>
-                                    </div>
+                                    @auth
+                                        <span id="cart-amount"
+                                            class="position-absolute bg-red-1 width-16 height-16 rounded-circle d-flex align-items-center justify-content-center text-white font-size-n9 left-0 top-0 ml-n2 mt-n1">0</span>
+                                        <i class="fa-solid fa-bag-shopping font-size-5"></i>
+                                        <div class="ml-2">
+                                            <span class="text-white font-size-1">Book Cart</span>
+                                            <div id="cart-total">$0</div>
+                                        </div>
+                                    @endauth
+                                    @guest
+                                        <i class="fa-solid fa-bag-shopping font-size-5"></i>
+                                        <div class="ml-2">
+                                            <span class="text-white font-size-1">Book Cart</span>
+                                            <div class="">Login to use</div>
+                                        </div>
+                                    @endguest
+
                                 </div>
                             </a>
 
@@ -260,7 +272,9 @@
         </div>
     </header>
 
-    @include('layout.cart')
+    <div id="user-cart">
+            @include('layout.cart')
+    </div>
 
 
     @include('layout.sidebar')
@@ -521,7 +535,8 @@
                                     <div
                                         class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                         <div class="woocommerce-loop-product__thumbnail">
-                                            <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}" class="d-block"><img
+                                            <a href="{{ route('bookDetail', ['book_id' => $book->id]) }}"
+                                                class="d-block"><img
                                                     src="{{ asset($book->bookImages[0]->image_path) }}"
                                                     class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                     alt="image-description" height="180" width="120"
@@ -530,7 +545,8 @@
                                         <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
                                             <h2
                                                 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                                <a href="{{ route('bookDetail', ['book_id'=>$book->id]) }}">{{ $book->name }}</a>
+                                                <a
+                                                    href="{{ route('bookDetail', ['book_id' => $book->id]) }}">{{ $book->name }}</a>
                                             </h2>
                                             <div class="font-size-2  mb-1 text-truncate"><a href="#"
                                                     class="text-gray-700">{{ $book->author->name }}</a></div>
@@ -1682,7 +1698,8 @@
                         <div class="p-5">
                             <h4 class="font-size-22">Romance</h4>
                             <p>Lorem ipsum dolor consectetu eiusmo tempor ametsum.</p>
-                            <a href="#" class="text-dark font-weight-medium text-uppercase stretched-link">View
+                            <a href="#"
+                                class="text-dark font-weight-medium text-uppercase stretched-link">View
                                 All</a>
                         </div>
                     </div>

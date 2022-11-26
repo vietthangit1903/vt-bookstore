@@ -51,7 +51,9 @@
 
     @include('layout.header')
 
-    @include('layout.cart')
+    <div id="user-cart">
+        @include('layout.cart')
+    </div>
 
     @include('layout.sidebar')
 

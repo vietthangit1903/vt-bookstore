@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cart_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('price');
+            $table->unsignedDecimal('price', $precision = 8, $scale = 2);
             $table->unsignedInteger('quantity');
             $table->foreignId('book_id')->constrained('books');
             $table->foreignId('user_id')->constrained('users');

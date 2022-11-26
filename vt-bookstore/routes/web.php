@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\GuestRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookListController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'getView'])->name('home');
 Route::get('/categories', [HomeController::class, 'categoriesList'])->name('categories-list');
+Route::get('/ajaxCart', [CartController::class, 'ajaxCart'])->name('ajax-cart');
 Route::get('/book-list', [BookListController::class, 'showBookList'])->name('book-list');
 Route::get('/book-list/search', [BookListController::class, 'search'])->name('search-book');
 Route::get('/book-list/category/{id}', [BookListController::class, 'bookByCategory'])->name('bookByCategory');

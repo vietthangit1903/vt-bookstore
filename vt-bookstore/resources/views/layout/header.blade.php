@@ -78,8 +78,10 @@
                             }'
                             data-unfold-animation-in="fadeInRight" data-unfold-animation-out="fadeOutRight"
                             data-unfold-duration="500">
-                            <span
-                                class="position-absolute bg-dark width-16 height-16 rounded-circle d-flex align-items-center justify-content-center text-white font-size-n9 right-0">3</span>
+                            @auth
+                                <span id="cart-amount"
+                                    class="position-absolute bg-dark width-16 height-16 rounded-circle d-flex align-items-center justify-content-center text-white font-size-n9 right-0">0</span>
+                            @endauth
                             <i class="fa-solid fa-bag-shopping"></i>
                         </a>
 
@@ -152,7 +154,8 @@
                             </a>
                             <ul id="shopDropdownMenu" class="dropdown-unfold dropdown-menu rounded-0 border-gray-900"
                                 aria-labelledby="shopDropdownInvoker">
-                                <li><a href="{{ route('book-list') }}" class="dropdown-item link-black-100">Book List </a></li>
+                                <li><a href="{{ route('book-list') }}" class="dropdown-item link-black-100">Book List
+                                    </a></li>
                                 <li><a href="{{ route('cart') }}" class="dropdown-item link-black-100">Book cart</a>
                                 </li>
                                 <li><a href="./checkout.html" class="dropdown-item link-black-100">Book checkout</a>
@@ -194,8 +197,9 @@
                                 <i
                                     class="fa-solid fa-magnifying-glass input-group px-2d75 py-2d75 bg-white-100 border-white-100"></i>
                             </div>
-                            <input class="form-control bg-white-100 min-width-380 py-2d75 height-4 border-white-100" name="keyword"
-                                type="search" placeholder="Search for Books by Keyword ..." aria-label="Search">
+                            <input class="form-control bg-white-100 min-width-380 py-2d75 height-4 border-white-100"
+                                name="keyword" type="search" placeholder="Search for Books by Keyword ..."
+                                aria-label="Search">
                         </div>
                         <button class="btn btn-outline-success my-2 my-sm-0 sr-only" type="submit">Search</button>
                     </form>

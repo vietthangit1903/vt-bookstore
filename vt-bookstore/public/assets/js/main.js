@@ -1,4 +1,5 @@
 insertCategoriesToSideBar();
+ajaxLoadCart();
 // Preloader
 const preloader = document.querySelector('#preloader')
 window.addEventListener('load', function () {
@@ -156,6 +157,34 @@ function ajaxDeleteImage(e) {
                 icon: 'error',
                 timer: 2000,
             }
+        )
+    });
+}
+
+function ajaxLoadCart() {
+    var cartBody = $('#user-cart aside .u-sidebar__content');
+    var cartAmount = $('#cart-amount');
+    var cartTotal = $('#cart-total');
+    $.ajax({
+        method: "GET",
+        url: "/ajaxCart"
+    }).done(function (response) {
+        $(cartBody).html(response.data);
+        if (response.amount == 0)
+                $(cartAmount).remove();
+        $(cartAmount).html(response.amount);
+        if (cartTotal) {
+            var total = response.total;
+            var formatTotal = Math.round((total + Number.EPSILON) * 100) / 100
+            $(cartTotal).html(`$${formatTotal}`);
+        }
+
+
+    }).fail(function () {
+        Swal.fire(
+            'Error!',
+            'Can not load cart, please try again',
+            'error'
         )
     });
 }
