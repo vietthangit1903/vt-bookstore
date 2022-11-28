@@ -23673,7 +23673,7 @@ footer .bootstrap-select .dropup .dropdown-menu {
 }
 
 .widget-content>ul a:hover, .widget-content>ul a:focus, footer .widget>ul a:hover, footer .widget>ul a:focus {
-    color: var(--red)
+    color: var(--primary)
 }
 
 .widget-content>ul .children, footer .widget>ul .children {

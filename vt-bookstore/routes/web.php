@@ -34,6 +34,7 @@ Route::get('/book-list/search', [BookListController::class, 'search'])->name('se
 Route::get('/book-list/category/{id}', [BookListController::class, 'bookByCategory'])->name('bookByCategory');
 
 Route::get('/book-detail/{book_id}', [BookController::class, 'showBook'])->name('bookDetail');
+Route::post('/add-to-cart', [CartController::class, 'addSingleBook'])->name('addSingleBook');
 
 
 Route::prefix('/auth')->group(function () {
@@ -60,6 +61,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/address', [UserController::class, 'saveAddress'])->name('user-address');
     Route::post('/address/delete', [UserController::class, 'deleteAddress'])->name('user-delete-address');
     Route::view('/cart', 'cart')->name('cart');
+    Route::post('/delete-cart-detail', [CartController::class, 'deleteSingleCartDetail'])->name('user.deleteSingleCartDetail');
 });
 
 Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {

@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="mt-3 ml-3">
-                <a href="#" class="text-dark"><i class="fas fa-times"></i></a>
+                <a href="{{ route('user.deleteSingleCartDetail') }}" class="btn rounded-0 btn-dark delete-detail" data-id="{{$item->id}}" data-csrf="{{ csrf_token() }}"><i class="fas fa-times"></i></a>
             </div>
         </div>
     </div>

@@ -558,7 +558,7 @@
 
                                         </div>
                                         <div class="product__hover d-flex align-items-center">
-                                            <a href="./single-product-v2.html"
+                                            <a href="{{ route('addSingleBook') }}" data-id="{{ $book->id }}" data-quantity="1" data-csrf="{{ csrf_token() }}"
                                                 class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
                                                 <span class="product__add-to-cart">ADD TO CART</span>
                                                 <span class="product__add-to-cart-icon font-size-4"><i

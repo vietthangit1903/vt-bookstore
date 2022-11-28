@@ -15,6 +15,20 @@ $(document).ready(function () {
         // hiển thị Sweetalert2 và xoá bằng ajax 
         showConfirmDelete(event.currentTarget);
     });
+
+    $(document).on('click', '.delete-detail', function (event) {
+        // stop chuyen link khi nhấn vào thẻ <a>
+        event.preventDefault();
+        ajaxDeleteDetail(event.currentTarget);
+    });
+
+    $(document).on('click', '.product__add-to-cart', function (event) {
+        // stop chuyen link khi nhấn vào thẻ <a>
+        event.preventDefault();
+        var aTag = $(event.target).parent();
+        // console.log($(aTag).data('quantity'));
+        ajaxAddSingleBook(aTag);
+    });
 });
 
 function showConfirmDelete(e) {
@@ -170,8 +184,6 @@ function ajaxLoadCart() {
         url: "/ajaxCart"
     }).done(function (response) {
         $(cartBody).html(response.data);
-        if (response.amount == 0)
-                $(cartAmount).remove();
         $(cartAmount).html(response.amount);
         if (cartTotal) {
             var total = response.total;
@@ -186,5 +198,73 @@ function ajaxLoadCart() {
             'Can not load cart, please try again',
             'error'
         )
+    });
+}
+
+// Delete cart detail
+function ajaxDeleteDetail(e) {
+    var url = $(e).prop('href');
+    var id = $(e).data('id');
+    var csrf = $(e).data('csrf');
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: {
+            id: id,
+            _token: csrf
+        }
+    }).done(function () {
+        ajaxLoadCart();
+    }).fail(function (response) { // nếu thất bại
+        Swal.fire(
+            {
+                title: 'Error',
+                html: response.message,
+                icon: 'error',
+                timer: 2000,
+            }
+        )
+    });
+}
+
+// Add single book to cart
+function ajaxAddSingleBook(e) {
+    var url = $(e).prop('href');
+    var id = $(e).data('id');
+    var quantity = $(e).data('quantity');
+    var csrf = $(e).data('csrf');
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: {
+            id,
+            quantity,
+            _token: csrf
+        }
+    }).done(function (response) {
+        ajaxLoadCart();
+        if (response.message) {
+            Swal.fire(
+                {
+                    title: 'Information',
+                    html: response.message,
+                    icon: 'info',
+                    timer: 2000,
+                }
+            )
+        }
+    }).fail(function (response) {
+        if (response.status == 401) {
+            Swal.fire({
+                title: 'Information',
+                icon: 'info',
+                html:
+                    'Please login to add book to cart. ' +
+                    '<a href="http://127.0.0.1:8000/auth/login">Login here.</a>',
+                showCloseButton: true,
+                confirmButtonColor: '#3259ea',
+                confirmButtonText: 'Close',
+            })
+        }
     });
 }

@@ -172,13 +172,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="product__hover d-flex align-items-center">
-                                                        <a href="#"
+                                                        <a href="{{ route('addSingleBook') }}"
                                                             class="text-uppercase text-dark h-dark font-weight-medium mr-auto"
-                                                            data-toggle="tooltip" data-placement="right" title=""
-                                                            data-original-title="ADD TO CART">
+                                                            data-id="{{ $book->id }}" data-quantity="1" data-csrf="{{ csrf_token() }}">
                                                             <span class="product__add-to-cart">ADD TO CART</span>
                                                             <span class="product__add-to-cart-icon font-size-4"><i
-                                                                    class="flaticon-icon-126515"></i></span>
+                                                                    class="fa-solid fa-bag-shopping"></i></span>
                                                         </a>
                                                         <a href="#"
                                                             class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
@@ -240,13 +239,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-auto d-flex align-items-center">
-                                                        <a href="#"
-                                                            class="text-uppercase text-dark h-dark font-weight-medium mr-4"
-                                                            data-toggle="tooltip" data-placement="right" title=""
-                                                            data-original-title="ADD TO CART">
+                                                        <a href="{{ route('addSingleBook') }}"
+                                                            class="text-uppercase text-dark h-dark font-weight-medium mr-4" data-id="{{ $book->id }}" data-quantity="1" data-csrf="{{ csrf_token() }}">
                                                             <span class="product__add-to-cart">ADD TO CART</span>
                                                             <span class="product__add-to-cart-icon font-size-4"><i
-                                                                    class="flaticon-icon-126515"></i></span>
+                                                                    class="fa-solid fa-bag-shopping"></i></span>
                                                         </a>
                                                         <a href="#"
                                                             class="mr-1 h-p-bg btn btn-outline-primary border-0">
