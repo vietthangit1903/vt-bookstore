@@ -7,11 +7,11 @@
 @foreach ($cartDetails as $item)
     <div class="px-4 py-5 px-md-6 border-bottom">
         <div class="media">
-            <a href="#" class="d-block"><img src="{{asset($item->book->bookImages[0]->image_path)}}" class="img-fluid"
+            <a href="{{ route('bookDetail', ['book_id' => $item->book->id]) }}" class="d-block"><img src="{{asset($item->book->bookImages[0]->image_path)}}" class="img-fluid"
                     alt="image-description" style="width: 120px; height: 180px; object-fit: contain"></a>
             <div class="media-body ml-4d875">
                 <h2 class="woocommerce-loop-product__title h6 text-lh-md mb-1 text-height-2 crop-text-2">
-                    <a href="#" class="text-dark">{{$item->book->name}}</a>
+                    <a href="{{ route('bookDetail', ['book_id' => $item->book->id]) }}" class="text-dark">{{$item->book->name}}</a>
                 </h2>
                 <div class="font-size-2 mb-1 text-truncate"><a href="#" class="text-gray-700">{{$item->book->author->name}}</a>
                 </div>
@@ -32,7 +32,7 @@
         <div class="font-weight-medium">${{$total}}</div>
     </div>
     <div class="px-4 mb-8 px-md-6">
-        <a href="./cart.html" class="btn btn-block py-4 rounded-0 btn-outline-dark mb-4">View Cart</a>
+        <a href="{{ route('cart') }}" class="btn btn-block py-4 rounded-0 btn-outline-dark mb-4">View Cart</a>
         <a href="./checkout.html" class="btn btn-block py-4 rounded-0 btn-dark">Checkout</a>
     </div>
 @else

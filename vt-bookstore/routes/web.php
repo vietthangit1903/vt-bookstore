@@ -60,7 +60,8 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/address', [UserController::class, 'showAddressView'])->name('user-address');
     Route::post('/address', [UserController::class, 'saveAddress'])->name('user-address');
     Route::post('/address/delete', [UserController::class, 'deleteAddress'])->name('user-delete-address');
-    Route::view('/cart', 'cart')->name('cart');
+    Route::get('/cart', [CartController::class, 'showCartView'])->name('cart');
+    Route::post('/cart', [CartController::class, 'updateCartDetail'])->name('cart');
     Route::post('/delete-cart-detail', [CartController::class, 'deleteSingleCartDetail'])->name('user.deleteSingleCartDetail');
 });
 

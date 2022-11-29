@@ -22,12 +22,44 @@ $(document).ready(function () {
         ajaxDeleteDetail(event.currentTarget);
     });
 
+    $(document).on('click', '.remove-cart-detail', function (event) {
+        // stop chuyen link khi nhấn vào thẻ <a>
+        event.preventDefault();
+        ajaxDeleteDetail(event.currentTarget);
+    });
+
     $(document).on('click', '.product__add-to-cart', function (event) {
         // stop chuyen link khi nhấn vào thẻ <a>
         event.preventDefault();
         var aTag = $(event.target).parent();
-        // console.log($(aTag).data('quantity'));
-        ajaxAddSingleBook(aTag);
+        var url = aTag.attr('href');
+        var id = aTag.data('id');
+        var quantity = aTag.data('quantity');
+        var csrf = aTag.data('csrf');
+        ajaxAddSingleBook(url, id, quantity, csrf);
+    });
+
+    $(document).on('submit', '#add-to-cart', function (event) {
+        // stop chuyen link khi nhấn vào thẻ <a>
+        event.preventDefault();
+        var $inputs = $('#add-to-cart :input');
+        var values = {};
+        $inputs.each(function () {
+            values[this.name] = $(this).val();
+        });
+        var url = $('#add-to-cart').attr('action');
+        console.log(values);
+        ajaxAddSingleBook(url, values.id, values.quantity, values._token);
+    });
+
+    $(document).on('change', 'input.quantity', function (event) {
+        var quantityInput = $(event.currentTarget);
+        var quantity = quantityInput.val();
+        var cartDetailId = quantityInput.data('id');
+        var csrf = quantityInput.data('csrf');
+        var url = window.location.href;
+        // console.log(url);
+        ajaxUpdateCart(url,quantity, cartDetailId, csrf);
     });
 });
 
@@ -215,6 +247,11 @@ function ajaxDeleteDetail(e) {
         }
     }).done(function () {
         ajaxLoadCart();
+        if(window.location.href.includes("/user/cart")){
+            let reload_url = window.location.href;
+            let target = $('.cart-container');
+            reloadList(reload_url, target)
+        }
     }).fail(function (response) { // nếu thất bại
         Swal.fire(
             {
@@ -228,11 +265,14 @@ function ajaxDeleteDetail(e) {
 }
 
 // Add single book to cart
-function ajaxAddSingleBook(e) {
-    var url = $(e).prop('href');
-    var id = $(e).data('id');
-    var quantity = $(e).data('quantity');
-    var csrf = $(e).data('csrf');
+/**
+ * 
+ * @param {string} url Url to send ajax request to add book to cart
+ * @param {number} id The id of the book to add to cart
+ * @param {number} quantity Quantity of the book to add to cart
+ * @param {string} csrf Csrf token to pass csrf middleware
+ */
+function ajaxAddSingleBook(url, id, quantity, csrf) {
     $.ajax({
         method: "POST",
         url: url,
@@ -243,6 +283,11 @@ function ajaxAddSingleBook(e) {
         }
     }).done(function (response) {
         ajaxLoadCart();
+        if(window.location.href.includes("/user/cart")){
+            let reload_url = $(e).data('reload-url');
+            let target = $('.cart-container');
+            reloadList(reload_url, target)
+        }
         if (response.message) {
             Swal.fire(
                 {
@@ -266,5 +311,50 @@ function ajaxAddSingleBook(e) {
                 confirmButtonText: 'Close',
             })
         }
+    });
+}
+
+/**
+ * 
+ * @param {string} url The URL to send ajax requests to update cart detail
+ * @param {number} quantity New quantity of cart detail
+ * @param {number} id Cart detail id
+ * @param {string} csrf Csrf token to pass csrf middleware
+ */
+function ajaxUpdateCart(url, quantity, id, csrf){
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: {
+            id,
+            quantity,
+            _token: csrf
+        }
+    }).done(function (response) {
+        ajaxLoadCart();
+        if(window.location.href.includes("/user/cart")){
+            let reload_url = window.location.href;
+            let target = $('.cart-container');
+            reloadList(reload_url, target)
+        }
+        if (response.message) {
+            Swal.fire(
+                {
+                    title: 'Information',
+                    html: response.message,
+                    icon: 'info',
+                    timer: 2000,
+                }
+            )
+        }
+    }).fail(function (response) {
+        Swal.fire(
+            {
+                title: 'Error',
+                html: response.message,
+                icon: 'error',
+                timer: 2000,
+            }
+        )
     });
 }

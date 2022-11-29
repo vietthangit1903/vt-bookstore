@@ -106,10 +106,10 @@
                                 </div>
                                 <div class="py-4 px-5">
 
-                                    <form class="cart mb-4" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('addSingleBook') }}" class="cart mb-4" id="add-to-cart" method="post" enctype="multipart/form-data">
+                                        <input type="text" name="id" value="{{$book->id}}" hidden>
                                         <label class="form-label font-size-2 font-weight-medium">Quantity</label>
                                         <div class="quantity mb-4 d-flex align-items-center">
-
                                             <div class="border px-3 w-100">
                                                 <div class="js-quantity">
                                                     <div class="d-flex align-items-center">
@@ -137,9 +137,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                        <button type="submit" name="add-to-cart" value="7145"
+                                        @csrf
+                                        <button type="submit"
                                             class="btn btn-block btn-dark border-0 rounded-0 p-3 single_add_to_cart_button button alt">Add
                                             to cart</button>
                                     </form>
@@ -541,7 +541,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product__hover d-flex align-items-center">
-                                                    <a href="#"
+                                                    <a href="{{ route('addSingleBook') }}" data-id="{{ $relatedBook->id }}" data-quantity="1" data-csrf="{{ csrf_token() }}"
                                                         class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
                                                         <span class="product__add-to-cart">ADD TO CART</span>
                                                         <span class="product__add-to-cart-icon font-size-4"><i

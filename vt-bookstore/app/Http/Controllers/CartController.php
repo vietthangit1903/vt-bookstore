@@ -34,6 +34,28 @@ class CartController extends Controller
         }
     }
 
+    public function showCartView(Request $request)
+    {
+        $user = Auth::user();
+        // $cartDetails = CartDetail::where('user_id', Auth::id())->get();
+        $cartDetails = CartDetail::whereBelongsTo($user)->get();
+        $total = 0;
+        foreach ($cartDetails as $cartDetail) {
+            $total += $cartDetail->price * $cartDetail->quantity;
+        }
+        $amount = $cartDetails->count();
+        $data = [
+            'cartDetails' => $cartDetails,
+            'amount' => $amount,
+            'total' => $total
+        ];
+        if($request->ajax()){
+            $html = view('cart-body', $data)->render();
+            return response()->json(['data' => $html]);
+        }
+        return view('cart', $data);
+    }
+
     public function deleteSingleCartDetail(Request $request)
     {
         $cartDetailId = $request->input('id');
@@ -62,6 +84,32 @@ class CartController extends Controller
             ],
             Response::HTTP_NOT_FOUND
         );
+    }
+
+    public function updateCartDetail(Request $request){
+        if($request->ajax()){
+            $cartDetailId = $request->input('id');
+            $quantity = $request->input('quantity');
+            $cartDetail = CartDetail::find($cartDetailId);
+            $value = $quantity - $cartDetail->quantity;
+            $book = Book::find($cartDetail->book_id);
+            $book->stock -= $value;
+            $cartDetail->quantity = $quantity;
+            if($book->save() && $cartDetail->save()){
+                return response()->json(
+                    [],
+                    Response::HTTP_OK
+                );
+            }
+            else{
+                return response()->json(
+                    [
+                        'message' => 'An error occurred, the cart detail cannot be updated.'
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+        }
     }
 
     public function addSingleBook(Request $request)
