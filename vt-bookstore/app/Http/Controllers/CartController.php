@@ -50,10 +50,10 @@ class CartController extends Controller
             'total' => $total
         ];
         if($request->ajax()){
-            $html = view('cart-body', $data)->render();
+            $html = view('user.cart-body', $data)->render();
             return response()->json(['data' => $html]);
         }
-        return view('cart', $data);
+        return view('user.cart', $data);
     }
 
     public function deleteSingleCartDetail(Request $request)
