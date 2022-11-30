@@ -33,7 +33,7 @@
                                     data-pagi-classes="text-center u-slick__pagination my-4">
                                     @foreach ($book->bookImages as $image)
                                         <div class="js-slide">
-                                            <img src="{{ asset($image->image_path) }}" alt="Book image"
+                                            <img src="{{ asset($image->image_path) }}" style="width: 300; height: 452px; object-fit: contain" alt="Book image"
                                                 class="mx-auto img-fluid">
                                         </div>
                                     @endforeach
