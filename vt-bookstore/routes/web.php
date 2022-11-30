@@ -12,6 +12,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookListController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,11 +59,19 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/change-password', [ChangePasswordController::class, 'changePassword'])->name('change-password');
 
     Route::get('/address', [UserController::class, 'showAddressView'])->name('user-address');
+    Route::get('/ajax-address', [UserController::class, 'ajaxAddressDetail'])->name('ajax-address');
     Route::post('/address', [UserController::class, 'saveAddress'])->name('user-address');
     Route::post('/address/delete', [UserController::class, 'deleteAddress'])->name('user-delete-address');
     Route::get('/cart', [CartController::class, 'showCartView'])->name('cart');
     Route::post('/cart', [CartController::class, 'updateCartDetail'])->name('cart');
     Route::post('/delete-cart-detail', [CartController::class, 'deleteSingleCartDetail'])->name('user.deleteSingleCartDetail');
+
+    Route::get('/checkout', [OrderController::class, 'showCheckoutView'])->name('user.checkout');
+    Route::post('/checkout', [OrderController::class, 'checkout'])->name('user.checkout');
+    Route::get('/checkout/vnpay-return', [OrderController::class, 'VNPayReturn'])->name('user.checkout-vnpay-return');
+
+    Route::get('/order-list', [OrderController::class, 'showOrderList'])->name('user.order-list');
+    Route::get('/order-detail/{order_id}', [OrderController::class, 'showOrderDetail'])->name('user.order-detail');
 });
 
 Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {

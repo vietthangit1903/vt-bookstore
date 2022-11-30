@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedDecimal('totalPrice', $precision = 9, $scale = 2);
-            $table->string('paymentStatus');
+            $table->string('orderStatus')->default('Processing');
+            $table->string('paymentStatus')->default('Unpaid');
             $table->string('paymentMethod');
             $table->string('transactionId')->nullable();
             $table->date('transDate')->nullable();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('address_id')->constrained('addresses');
             $table->timestamps();
         });
     }

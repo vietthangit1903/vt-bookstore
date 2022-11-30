@@ -11,6 +11,18 @@ class OrderDetail extends Model
 
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'price', 
+        'quantity',
+        'order_id',
+        'book_id',
+    ];
+
     public function order(){
         return $this->belongsTo(Order::class);
     }

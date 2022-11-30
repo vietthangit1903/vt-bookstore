@@ -33,7 +33,7 @@
     </div>
     <div class="px-4 mb-8 px-md-6">
         <a href="{{ route('cart') }}" class="btn btn-block py-4 rounded-0 btn-outline-dark mb-4">View Cart</a>
-        <a href="./checkout.html" class="btn btn-block py-4 rounded-0 btn-dark">Checkout</a>
+        <a href="{{ route('user.checkout') }}" class="btn btn-block py-4 rounded-0 btn-dark">Checkout</a>
     </div>
 @else
     <div class="px-4 mb-8 px-md-6 text-center">

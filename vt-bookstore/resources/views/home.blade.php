@@ -136,7 +136,7 @@
                                                     class="dropdown-item link-black-100">Admin Page</a></li>
                                         @endif
                                         <li><a href="{{ route('cart') }}" class="dropdown-item link-black-100">Shopping Cart</a></li>
-                                        <li><a href="#" class="dropdown-item link-black-100">Wishlist</a></li>
+                                        <li><a href="{{ route('user.order-list') }}" class="dropdown-item link-black-100">Order list</a></li>
                                         <li><a href="{{ route('change-password') }}"
                                                 class="dropdown-item link-black-100">Change password</a></li>
                                         <li><a href="{{ route('auth.logout') }}" class="dropdown-item link-black-100">Log
@@ -236,7 +236,7 @@
                                         <li><a href="{{ route('cart') }}" class="dropdown-item link-black-100">Book
                                                 cart</a>
                                         </li>
-                                        <li><a href="./checkout.html" class="dropdown-item link-black-100">Book
+                                        <li><a href="{{ route('user.checkout') }}" class="dropdown-item link-black-100">Book
                                                 checkout</a></li>
                                         <li><a href="{{ route('my-account') }}"
                                                 class="dropdown-item link-black-100">My

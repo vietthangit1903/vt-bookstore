@@ -22,6 +22,6 @@
 
 @section('content')
     <div class="site-content bg-blue-light overflow-hidden" id="content">
-           @include('cart-body')
+           @include('user.cart-body')
     </div>
 @endsection

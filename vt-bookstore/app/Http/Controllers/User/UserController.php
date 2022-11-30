@@ -43,18 +43,16 @@ class UserController extends Controller
     {
         $input = $addressRequest->validated();
         $addressId = $addressRequest->query('id');
-        if ($addressId){
+        if ($addressId) {
             $address = Address::where(['id' => $addressId, 'user_id' => Auth::id()])->first();
-            if($address){
+            if ($address) {
                 $address->name = $input['addressName'];
-            $address->address = $input['addressDetail'];
-            $address->save();
-            return redirect()->route('my-account')->with('success', 'Your address was successfully updated');
-            }
-            else
+                $address->address = $input['addressDetail'];
+                $address->save();
+                return redirect()->route('my-account')->with('success', 'Your address was successfully updated');
+            } else
                 return back()->with('error', 'Can not find address you are looking for');
-        }
-        else{
+        } else {
             $newAddress = Address::create([
                 'name' => $input['addressName'],
                 'address' => $input['addressDetail'],
@@ -62,19 +60,18 @@ class UserController extends Controller
             ]);
             return redirect()->route('my-account')->with('success', 'Your address has been created successfully');
         }
-              
     }
 
-    public function deleteAddress(Request $request) {
+    public function deleteAddress(Request $request)
+    {
         $addressId = $request->input('id');
         $address = Address::where(['id' => $addressId, 'user_id' => Auth::id()])->first();
-        if($address){
-            if($address->delete()){
+        if ($address) {
+            if ($address->delete()) {
                 return response()->json([
                     'message' => $address->name . ' has been deleted successfully!'
                 ], Response::HTTP_OK);
-            }
-            else{
+            } else {
                 return response()->json([
                     'message' => $address->name . ' can not be deleted successfully!'
                 ], Response::HTTP_BAD_REQUEST);
@@ -85,7 +82,8 @@ class UserController extends Controller
         ], Response::HTTP_NOT_FOUND);
     }
 
-    public function updateUserInfor(UpdateUserRequest $request){
+    public function updateUserInfor(UpdateUserRequest $request)
+    {
         $user = User::find(Auth::id());
         $input = $request->validated();
         $fullName = $input['fullName'];
@@ -94,16 +92,35 @@ class UserController extends Controller
             'fullName' => $fullName,
             'dob' => $dob,
         ];
-        if($request->hasFile('image')){
-            if($user->image != 'images/default-avt.png')
+        if ($request->hasFile('image')) {
+            if ($user->image != 'images/default-avt.png')
                 Storage::delete($user->image);
             $image = $request->file('image')->store('images');
             $data['image'] = $image;
         }
-        if($user->update($data)){
-            return redirect()->route('my-account')->with('success','Your account has been updated');
+        if ($user->update($data)) {
+            return redirect()->route('my-account')->with('success', 'Your account has been updated');
         }
-        return back()->withInput()->with('error','Something went wrong while updating your account');
+        return back()->withInput()->with('error', 'Something went wrong while updating your account');
+    }
 
+    public function ajaxAddressDetail(Request $request)
+    {
+        if ($request->input('id')) {
+            $address = Address::find($request->input('id'));
+            return response()->json(
+                [
+                    'addressDetail' => $address->address,
+                ],
+                Response::HTTP_OK
+            );
+        }
+        else
+        return response()->json(
+            [
+                'addressDetail' => "",
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
     }
 }
