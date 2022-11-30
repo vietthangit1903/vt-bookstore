@@ -71,50 +71,45 @@ class OrderController extends Controller
         }
         // Todo: neu payment method la vnpay chuyen huong sang trang vnpay de thanh toan
         // Neu khong chuyen huong den trang order received voi tham so la order id.
-        if($order->paymentMethod!= 'vnpay')
+        if ($order->paymentMethod != 'vnpay')
             return redirect()->route('user.order-detail', ['order_id' => $order->id]);
-        dd('done');
+        return $this->RedirectVNPayPayment($order);
     }
 
-    public function RedirectVNPayPayment(Order $order){
+    public function payOrderVNPay($order_id)
+    {
+        $user = Auth::user();
+        $order = Order::where([
+            ['user_id', '=', $user->id],
+            ['id', '=', $order_id],
+        ])->first();
+        if ($order) {
+            $order->paymentMethod = 'vnpay';
+            $order->save();
+            return $this->RedirectVNPayPayment($order);
+        }
+        return back()->with('info', 'Your order is not found.');
+    }
+
+    public function RedirectVNPayPayment(Order $order)
+    {
         error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        
+
         $vnp_Url = env('VNPAY_URL');
-        $vnp_Returnurl = env('VNPAY_RETURNURL');
-        $vnp_TmnCode = env('VNPAY_TMNCODE');//Mã website tại VNPAY 
-        $vnp_HashSecret = env('VNPAY_HASHSECRECT'); //Chuỗi bí mật
-        
-        $vnp_TxnRef = $_POST['order_id']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = $_POST['order_desc'];
-        $vnp_OrderType = $_POST['order_type'];
-        $vnp_Amount = $_POST['amount'] * 100;
-        $vnp_Locale = $_POST['language'];
-        $vnp_BankCode = $_POST['bank_code'];
+        $vnp_Returnurl = env('VNPAY_RETURN_URL');
+        $vnp_TmnCode = env('VNPAY_TMN_CODE'); //Mã website tại VNPAY 
+        $vnp_HashSecret = env('VNPAY_HASH_SECRECT'); //Chuỗi bí mật
+
+        $vnp_TxnRef = $order->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = "Payment for book order with id is " . $order->id;
+        $vnp_OrderType = "Book";
+        $vnp_Amount = $order->totalPrice * 100 * 24645;
+        $vnp_Locale = "en";
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
         //Add Params of 2.0.1 Version
-        $vnp_ExpireDate = $_POST['txtexpire'];
-        //Billing
-        $vnp_Bill_Mobile = $_POST['txt_billing_mobile'];
-        $vnp_Bill_Email = $_POST['txt_billing_email'];
-        $fullName = trim($_POST['txt_billing_fullname']);
-        if (isset($fullName) && trim($fullName) != '') {
-            $name = explode(' ', $fullName);
-            $vnp_Bill_FirstName = array_shift($name);
-            $vnp_Bill_LastName = array_pop($name);
-        }
-        $vnp_Bill_Address=$_POST['txt_inv_addr1'];
-        $vnp_Bill_City=$_POST['txt_bill_city'];
-        $vnp_Bill_Country=$_POST['txt_bill_country'];
-        $vnp_Bill_State=$_POST['txt_bill_state'];
-        // Invoice
-        $vnp_Inv_Phone=$_POST['txt_inv_mobile'];
-        $vnp_Inv_Email=$_POST['txt_inv_email'];
-        $vnp_Inv_Customer=$_POST['txt_inv_customer'];
-        $vnp_Inv_Address=$_POST['txt_inv_addr1'];
-        $vnp_Inv_Company=$_POST['txt_inv_company'];
-        $vnp_Inv_Taxcode=$_POST['txt_inv_taxcode'];
-        $vnp_Inv_Type=$_POST['cbo_inv_type'];
+        $vnp_ExpireDate = date('YmdHis', strtotime("+1 day"));
+
         $inputData = array(
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
@@ -128,30 +123,9 @@ class OrderController extends Controller
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
-            "vnp_ExpireDate"=>$vnp_ExpireDate,
-            "vnp_Bill_Mobile"=>$vnp_Bill_Mobile,
-            "vnp_Bill_Email"=>$vnp_Bill_Email,
-            "vnp_Bill_FirstName"=>$vnp_Bill_FirstName,
-            "vnp_Bill_LastName"=>$vnp_Bill_LastName,
-            "vnp_Bill_Address"=>$vnp_Bill_Address,
-            "vnp_Bill_City"=>$vnp_Bill_City,
-            "vnp_Bill_Country"=>$vnp_Bill_Country,
-            "vnp_Inv_Phone"=>$vnp_Inv_Phone,
-            "vnp_Inv_Email"=>$vnp_Inv_Email,
-            "vnp_Inv_Customer"=>$vnp_Inv_Customer,
-            "vnp_Inv_Address"=>$vnp_Inv_Address,
-            "vnp_Inv_Company"=>$vnp_Inv_Company,
-            "vnp_Inv_Taxcode"=>$vnp_Inv_Taxcode,
-            "vnp_Inv_Type"=>$vnp_Inv_Type
+            "vnp_ExpireDate" => $vnp_ExpireDate,
         );
-        
-        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
-            $inputData['vnp_BankCode'] = $vnp_BankCode;
-        }
-        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
-            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
-        }
-        
+
         //var_dump($inputData);
         ksort($inputData);
         $query = "";
@@ -166,48 +140,83 @@ class OrderController extends Controller
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
-        
+
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-        $returnData = array('code' => '00'
-            , 'message' => 'success'
-            , 'data' => $vnp_Url);
-            if (isset($_POST['redirect'])) {
-                header('Location: ' . $vnp_Url);
-                die();
-            } else {
-                echo json_encode($returnData);
+        header('Location: ' . $vnp_Url);
+        die();
+    }
+
+    public function VNPayReturn()
+    {
+        $vnp_HashSecret = env('VNPAY_HASH_SECRECT'); //Chuỗi bí mật
+        $vnp_SecureHash = $_GET['vnp_SecureHash'];
+        $inputData = array();
+        foreach ($_GET as $key => $value) {
+            if (substr($key, 0, 4) == "vnp_") {
+                $inputData[$key] = $value;
             }
+        }
+
+        unset($inputData['vnp_SecureHash']);
+        ksort($inputData);
+        $i = 0;
+        $hashData = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData = $hashData . '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData = $hashData . urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+        }
+
+        $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+        $order_id = $inputData['vnp_TxnRef'];
+        $order = Order::find($order_id);
+        if ($secureHash == $vnp_SecureHash) {
+            if ($_GET['vnp_ResponseCode'] == '00') {
+                $order->paymentStatus = "Paid";
+                $order->transactionId = $inputData['vnp_TransactionNo'];
+                $order->transDate = $inputData['vnp_PayDate'];
+                $order->save();
+                return redirect()->route('user.order-detail', ['order_id' => $order->id]);
+            } else {
+                return redirect()->route('user.order-detail', ['order_id' => $order->id, 'orderFailed' => true]);
+            }
+        } else {
+            return redirect()->route('user.order-detail', ['order_id' => $order->id, 'orderFailed' => true]);
+        }
     }
 
-    public function VNPayReturn(){
-
-    }
-
-    public function showOrderList(){
+    public function showOrderList()
+    {
         $user = Auth::user();
         $order = Order::whereBelongsTo($user)->paginate(10);
         return view('user.order-list', ['paginator' => $order]);
     }
 
-    public function showOrderDetail($order_id){
+    public function showOrderDetail($order_id, Request $request)
+    {
         $user = Auth::user();
+        $orderFailed = $request->query('orderFailed');
         $order = Order::where([
             ['user_id', '=', $user->id],
             ['id', '=', $order_id],
         ])->first();
-        if($order){
+        if ($order) {
             $orderDetails = OrderDetail::whereBelongsTo($order)->get();
             $data = [
                 'order' => $order,
                 'orderDetails' => $orderDetails
             ];
+            if($orderFailed)
+            $data['orderFailed'] = true;
             return view('user.order-detail', $data);
         }
         return back()->with('info', 'Your order is not found.');
     }
-
 }

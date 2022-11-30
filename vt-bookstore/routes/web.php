@@ -72,6 +72,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/order-list', [OrderController::class, 'showOrderList'])->name('user.order-list');
     Route::get('/order-detail/{order_id}', [OrderController::class, 'showOrderDetail'])->name('user.order-detail');
+    Route::get('/pay-order-vnpay/{order_id}', [OrderController::class, 'payOrderVNPay'])->name('user.payOrderVNPay');
 });
 
 Route::prefix('/admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {

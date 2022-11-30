@@ -7814,9 +7814,9 @@ a.badge-red-1:focus, a.badge-red-1.focus {
 }
 
 .alert-primary {
-    color: #802c2c;
-    background-color: #fddddd;
-    border-color: #fdcfcf
+    color: #2c2c80;
+    background-color: var(--carolina-light);
+    border-color: var(--dark-blue)
 }
 
 .alert-primary hr {

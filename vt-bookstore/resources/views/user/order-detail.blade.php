@@ -26,8 +26,27 @@
             <div class="container">
                 <div class="py-5 py-lg-7">
                     <h6 class="font-weight-medium font-size-7 text-center mt-lg-1">Order Details</h6>
+                    @isset($orderFailed)
+                        <div class="alert alert-primary w-50 m-auto " role="alert">
+                            Your order's payment is failed. You can pay for this order later!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                            </button>
+                        </div>
+                    @endisset
                 </div>
+
                 <div class="max-width-890 mx-auto">
+                    <div class="mb-3">
+                        <a href="{{ route('user.order-list') }}"
+                            class="btn btn-dark rounded-0 btn-wide py-3 mr-2 font-weight-medium">Order list</a>
+                        @if ($order->paymentMethod != 'vnpay' || ($order->paymentMethod == 'vnpay' && $order->paymentStatus == 'Unpaid'))
+                            <a href="{{ route('user.payOrderVNPay', ['order_id' => $order->id]) }}"
+                                class="btn btn-dark rounded-0 btn-wide py-3 mr-2 font-weight-medium">Pay for
+                                this
+                                order via VNPay</a>
+                        @endif
+                    </div>
                     <div class="bg-white pt-6 border">
                         <h6 class="font-size-3 font-weight-medium text-center mb-4 pb-xl-1">Thank you. Your order has
                             been received.</h6>
@@ -59,25 +78,26 @@
                                             <td class="pr-0 py-0 font-weight-medium">${{ $order->totalPrice }}</td>
                                             <td class="pr-0 py-0 font-weight-medium text-md-center">
                                                 {{ $order->orderStatus }}</td>
-                                                @php
-                                                    $paymentMethod = "";
-                                                    switch ($order->paymentMethod) {
-                                                        case 'vnpay':
-                                                            $paymentMethod = "Payment via VNPay";
-                                                            break;
-                                                        case 'chkpayment':
-                                                            $paymentMethod = "Check payments";
-                                                            break;
-                                                        case 'cod':
-                                                            $paymentMethod = "Cash on delivery";
-                                                            break;
-                                                        
-                                                        default:
-                                                            break;
-                                                    }
-                                                @endphp
-                                            <td class="py-0 font-weight-medium text-md-center">{{$paymentMethod}}</td>
-                                            <td class="py-0 font-weight-medium text-md-right pr-md-4">{{ $order->paymentStatus }}</td>
+                                            @php
+                                                $paymentMethod = '';
+                                                switch ($order->paymentMethod) {
+                                                    case 'vnpay':
+                                                        $paymentMethod = 'Payment via VNPay';
+                                                        break;
+                                                    case 'chkpayment':
+                                                        $paymentMethod = 'Check payments';
+                                                        break;
+                                                    case 'cod':
+                                                        $paymentMethod = 'Cash on delivery';
+                                                        break;
+                                                
+                                                    default:
+                                                        break;
+                                                }
+                                            @endphp
+                                            <td class="py-0 font-weight-medium text-md-center">{{ $paymentMethod }}</td>
+                                            <td class="py-0 font-weight-medium text-md-right pr-md-4">
+                                                {{ $order->paymentStatus }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -89,16 +109,18 @@
                                     <h6 class="font-size-3 on-weight-medium mb-4 pb-1">Order Details</h6>
                                     @foreach ($orderDetails as $orderDetail)
                                         <div class="d-flex justify-content-between mb-4">
-                                        <div class="d-flex align-items-baseline">
-                                            <div>
-                                                <h6 class="font-size-2 font-weight-normal mb-1">{{$orderDetail->book->name}}</h6>
+                                            <div class="d-flex align-items-baseline">
+                                                <div>
+                                                    <h6 class="font-size-2 font-weight-normal mb-1">
+                                                        {{ $orderDetail->book->name }}</h6>
+                                                </div>
+                                                <span class="font-size-2 ml-4 ml-md-8">x{{ $orderDetail->quantity }}</span>
                                             </div>
-                                            <span class="font-size-2 ml-4 ml-md-8">x{{$orderDetail->quantity}}</span>
+                                            <span
+                                                class="font-weight-medium font-size-2">${{ $orderDetail->quantity * $orderDetail->price }}</span>
                                         </div>
-                                        <span class="font-weight-medium font-size-2">${{$orderDetail->quantity * $orderDetail->price}}</span>
-                                    </div>
                                     @endforeach
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -114,7 +136,7 @@
                                 </li>
                                 <li class="d-flex justify-content-between pt-2">
                                     <span class="font-weight-medium font-size-2">Payment Method:</span>
-                                    <span class="font-weight-medium font-size-2">{{$paymentMethod}}</span>
+                                    <span class="font-weight-medium font-size-2">{{ $paymentMethod }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -132,7 +154,7 @@
                                     <h6 class="font-weight-medium font-size-22 mb-3">Shipping Address
                                     </h6>
                                     <address class="d-flex flex-column mb-0">
-                                        <span class="text-gray-600 font-size-2">{{$order->address->address}}</span>
+                                        <span class="text-gray-600 font-size-2">{{ $order->address->address }}</span>
                                     </address>
                                 </div>
                             </div>
