@@ -39,6 +39,19 @@ $(document).ready(function () {
         ajaxAddSingleBook(url, id, quantity, csrf);
     });
 
+    $(document).on('click', 'a.add-to-cart', function (event) {
+        // stop chuyen link khi nhấn vào thẻ <a>
+        event.preventDefault();
+        var aTag = $(event.currentTarget);
+        var url = aTag.attr('href');
+        var id = aTag.data('id');
+        var quantity = aTag.data('quantity');
+        var csrf = aTag.data('csrf');
+        ajaxAddSingleBook(url, id, quantity, csrf);
+    });
+
+
+
     $(document).on('submit', '#add-to-cart', function (event) {
         // stop chuyen link khi nhấn vào thẻ <a>
         event.preventDefault();

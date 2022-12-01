@@ -206,7 +206,7 @@
                         <div class="tab-pane fade" id="pills-two-example1" role="tabpanel"
                             aria-labelledby="pills-two-example1-tab">
                             @if ($total)
-                                <ul class="products list-unstyled mb-6">
+                                <ul class="products list-unstyled mb-6">    
                                     @foreach ($paginator as $book)
                                         <li class="product product__list">
                                             <div class="product__inner overflow-hidden p-3 p-md-4d875">
@@ -240,17 +240,21 @@
                                                     </div>
                                                     <div class="col-md-auto d-flex align-items-center">
                                                         <a href="{{ route('addSingleBook') }}"
-                                                            class="text-uppercase text-dark h-dark font-weight-medium mr-4" data-id="{{ $book->id }}" data-quantity="1" data-csrf="{{ csrf_token() }}">
+                                                            class="text-uppercase text-dark h-dark font-weight-medium mr-auto add-to-cart"
+                                                            data-id="{{ $book->id }}" data-quantity="1" data-csrf="{{ csrf_token() }}">
                                                             <span class="product__add-to-cart">ADD TO CART</span>
                                                             <span class="product__add-to-cart-icon font-size-4"><i
                                                                     class="fa-solid fa-bag-shopping"></i></span>
                                                         </a>
                                                         <a href="#"
-                                                            class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                                            <i class="flaticon-switch"></i>
+                                                            class="mr-1 h-p-bg btn btn-outline-primary-blue border-0">
+                                                            <i class="fa-solid fa-repeat"></i>
+
                                                         </a>
-                                                        <a href="#" class="h-p-bg btn btn-outline-primary border-0">
-                                                            <i class="flaticon-heart"></i>
+                                                        <a href="#"
+                                                            class="h-p-bg btn btn-outline-primary-blue border-0">
+                                                            <i class="fa-regular fa-heart"></i>
+
                                                         </a>
                                                     </div>
                                                 </div>
