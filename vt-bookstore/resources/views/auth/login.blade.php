@@ -54,8 +54,8 @@
 
                     <div class="d-flex justify-content-between mb-5 align-items-center">
                         <div class="form-check custom-checkbox">
-                            <input class="form-check-input custom-control-input" type="checkbox" value="{{ old('rememberMe') ? old('rememberMe') : true}}"
-                                id="flexCheckDefault" name="rememberMe">
+                            <input class="form-check-input custom-control-input" type="checkbox" value="true"
+                                id="flexCheckDefault" name="rememberMe" @checked(old('rememberMe'))>
                             <label class="form-check-label font-size-2 text-secondary-gray-700 custom-control-label"
                                 for="flexCheckDefault">
                                 Remember me

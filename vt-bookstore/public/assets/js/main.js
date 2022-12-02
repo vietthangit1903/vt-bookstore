@@ -1,10 +1,6 @@
 insertCategoriesToSideBar();
 ajaxLoadCart();
-// Preloader
-const preloader = document.querySelector('#preloader')
-window.addEventListener('load', function () {
-    preloader.style.display = "none";
-});
+
 
 
 
@@ -371,3 +367,9 @@ function ajaxUpdateCart(url, quantity, id, csrf){
         )
     });
 }
+
+// Preloader
+const preloader = document.querySelector('#preloader')
+window.addEventListener('load', function () {
+    preloader.style.display = "none";
+});
