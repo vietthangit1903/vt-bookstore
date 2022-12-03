@@ -25,7 +25,7 @@ class PublishersRequest extends FormRequest
     {
         return [
             'id'=>'nullable',
-            'name' => 'required|max:255',
+            'name' => 'required|unique:publishers,name|max:255',
         ];
     }
 
@@ -38,6 +38,7 @@ class PublishersRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter publisher\'s name',
+            'name.unique' => 'This publisher\'s name is already taken',
             'name.max' => 'Publisher\'s name can not exceed 255 words'
         ];
     }

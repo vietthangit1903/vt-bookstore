@@ -241,10 +241,7 @@
                                         <li><a href="{{ route('my-account') }}"
                                                 class="dropdown-item link-black-100">My
                                                 Account</a></li>
-                                        <li><a href="./order-received.html" class="dropdown-item link-black-100">Order
-                                                Received</a></li>
-                                        <li><a href="./order-tracking.html" class="dropdown-item link-black-100">Order
-                                                Tracking</a></li>
+                                        <li><a href="{{ route('user.order-list') }}" class="dropdown-item link-black-100">Order List</a></li>
                                     </ul>
                                 </li>
                             </ul>
